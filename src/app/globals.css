@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FFFDF9;
+  --foreground: #2A171D;
+  --wedding-maroon: #881337;
+  --wedding-gold: #D97706;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Luxury Wedding Gold Foil Text Gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 40%, #B45309 80%, #78350F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-royal-gradient {
+  background: linear-gradient(135deg, #BE123C 0%, #881337 50%, #4C0519 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Royal Background Gradients */
+.bg-royal-mesh {
+  background-color: #4C0519;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(217, 119, 6, 0.25) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(136, 19, 55, 0.6) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(76, 5, 25, 0.9) 0px, transparent 100%);
+}
+
+.bg-festive-light {
+  background: radial-gradient(circle at 50% 0%, #FFF1F2 0%, #FFFDF9 70%);
+}
+
+/* Glassmorphism Luxury Card */
+.glass-wedding-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.glass-royal-dark {
+  background: rgba(43, 2, 12, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+/* Delicate Ornamental Borders */
+.border-gold-glow {
+  border: 1px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 0 0 15px -3px rgba(217, 119, 6, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFDF9;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2c08d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c2961d;
+}
