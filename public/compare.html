@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Wedding Vendors - Vivah Marketplace</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    .compare-container {
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 1.5rem;
+      border: 1px solid var(--stone-200);
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.5rem;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 750px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--stone-100);
+      vertical-align: top;
+    }
+    .compare-table th {
+      background: var(--stone-50);
+      width: 220px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--stone-700);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .compare-col {
+      width: calc((100% - 220px) / 2);
+    }
+    .compare-col-3 {
+      width: calc((100% - 220px) / 3);
+    }
+    .feature-tag-chip {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: var(--stone-100);
+      color: var(--stone-700);
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.4rem;
+      margin: 0.15rem;
+    }
+    .match-check {
+      color: #059669;
+      font-weight: 800;
+      margin-right: 0.25rem;
+    }
+    .quick-preset-btn {
+      cursor: pointer;
+      border: 1px solid var(--stone-300);
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      background: #fff;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+    .quick-preset-btn.active, .quick-preset-btn:hover {
+      background: var(--maroon-800);
+      color: #fff;
+      border-color: var(--maroon-800);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span>✨ India's Dedicated Multi-Vendor Wedding Discovery &amp; Booking Marketplace</span>
+    <span>|</span>
+    <span>📞 Concierge Helpline: +91 1800-VIVAH-CARE</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">वि</div>
+        <div class="brand-text">
+          <h1>Vivah <span>Marketplace</span></h1>
+          <p>Discover • Compare • Negotiate • Book</p>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="compare.html" class="nav-link active">Compare</a>
+        <a href="planner.html" class="nav-link">Wedding Planner</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="negotiation.html" class="nav-link">Deal Room</a>
+        <a href="register-vendor.html" class="nav-link">Join as Vendor</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="planner.html" class="btn-planner-cta">
+          <span>📅 Plan Wedding</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-padding" style="padding-top: 2rem;">
+    <div class="container">
+      <!-- Title & Controls -->
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+        <span class="section-tag">Objective Evaluation</span>
+        <h1 style="font-size: 2.3rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-top: 0.5rem;">
+          Side-by-Side Vendor Comparison
+        </h1>
+        <p style="font-size: 0.9rem; color: var(--stone-600); margin-top: 0.35rem;">
+          Compare pricing, package inclusions, ratings, and ceremony coverage to choose the best specialists for your celebration.
+        </p>
+
+        <!-- Presets -->
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem;">
+          <button class="quick-preset-btn active" onclick="loadComparisonPreset(['v-101', 'v-102'])">
+            Mandap vs. Photography
+          </button>
+          <button class="quick-preset-btn" onclick="loadComparisonPreset(['v-103', 'v-105'])">
+            Catering vs. DJ Sound
+          </button>
+          <button class="quick-preset-btn" onclick="loadComparisonPreset(['v-104', 'v-106'])">
+            Bridal Makeup vs. Pandits
+          </button>
+        </div>
+      </div>
+
+      <!-- Selectors Bar -->
+      <div style="background: #fff; border-radius: 1.25rem; padding: 1.5rem; border: 1px solid var(--stone-200); box-shadow: var(--shadow-sm); display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; align-items: center;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--stone-600);">Select Provider #1</label>
+          <select id="selectVendor1" onchange="onVendorSelectChange()" style="padding: 0.65rem 1rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; width: 100%; outline: none; background: var(--stone-50);">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--stone-600);">Select Provider #2</label>
+          <select id="selectVendor2" onchange="onVendorSelectChange()" style="padding: 0.65rem 1rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; width: 100%; outline: none; background: var(--stone-50);">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--stone-600);">Select Provider #3 (Optional)</label>
+          <select id="selectVendor3" onchange="onVendorSelectChange()" style="padding: 0.65rem 1rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; width: 100%; outline: none; background: var(--stone-50);">
+            <option value="">-- None --</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="compare-container">
+        <table class="compare-table" id="comparisonTable">
+          <!-- Populated by JS -->
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Quick Enquiry Modal -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-dialog">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 id="modalVendorTitle" style="font-size: 1.25rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950);">
+          Request Custom Quotation
+        </h3>
+        <button id="closeEnquiryModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--stone-400);">&times;</button>
+      </div>
+
+      <div id="enquirySuccessMsg" style="display: none;"></div>
+
+      <form id="enquiryForm">
+        <input type="hidden" id="modalVendorId">
+        <input type="hidden" id="modalVendorName">
+        <input type="hidden" id="modalVendorCategory">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label>Your Full Name *</label>
+            <input type="text" id="custName" placeholder="e.g. Aarav Malhotra" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number * (Stored in MongoDB)</label>
+            <input type="tel" id="custPhone" placeholder="+91 98199 44321" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="form-group">
+            <label>Ceremony Type</label>
+            <select id="custEvent">
+              <option value="Wedding Ceremony">Wedding Ceremony</option>
+              <option value="Sangeet">Sangeet</option>
+              <option value="Haldi &amp; Mehendi">Haldi &amp; Mehendi</option>
+              <option value="Reception">Reception</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Auspicious Event Date</label>
+            <input type="date" id="custDate" value="2026-12-18" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Target Budget (₹ INR)</label>
+          <input type="number" id="custBudget" value="150000">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label>Special Requests or Custom Themes</label>
+          <textarea id="custNotes" rows="3" placeholder="Tell the vendor about guest count, venue preferences, or custom requirements..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Send Quotation Request (Stores Phone in DB)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-bottom" style="text-align: center;">
+      <p>&copy; 2026 Vivah Marketplace. The Premier Multi-Vendor Wedding Discovery &amp; Booking Platform.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let allVendors = typeof INITIAL_VENDORS !== 'undefined' ? [...INITIAL_VENDORS] : [];
+
+    async function initVendors() {
+      try {
+        const res = await fetch('/api/vendors');
+        const data = await res.json();
+        if (data.success && data.data && data.data.length) {
+          allVendors = data.data;
+        }
+      } catch (e) {
+        // use fallback data
+      }
+      populateDropdowns();
+      renderComparison(['v-101', 'v-102']);
+    }
+
+    function populateDropdowns() {
+      const s1 = document.getElementById('selectVendor1');
+      const s2 = document.getElementById('selectVendor2');
+      const s3 = document.getElementById('selectVendor3');
+
+      if (!s1 || !s2 || !s3) return;
+
+      const opts = allVendors.map(v => `<option value="${v.id}">${v.businessName} (${v.category}) - ₹${v.startingPrice.toLocaleString('en-IN')}</option>`).join('');
+
+      s1.innerHTML = opts;
+      s2.innerHTML = opts;
+      s3.innerHTML = '<option value="">-- None --</option>' + opts;
+
+      if (allVendors[0]) s1.value = allVendors[0].id;
+      if (allVendors[1]) s2.value = allVendors[1].id;
+    }
+
+    function onVendorSelectChange() {
+      const v1 = document.getElementById('selectVendor1').value;
+      const v2 = document.getElementById('selectVendor2').value;
+      const v3 = document.getElementById('selectVendor3').value;
+
+      const ids = [v1, v2];
+      if (v3) ids.push(v3);
+      renderComparison(ids);
+    }
+
+    window.loadComparisonPreset = function(ids) {
+      document.querySelectorAll('.quick-preset-btn').forEach(b => b.classList.remove('active'));
+      if (event && event.target) event.target.classList.add('active');
+
+      const s1 = document.getElementById('selectVendor1');
+      const s2 = document.getElementById('selectVendor2');
+      const s3 = document.getElementById('selectVendor3');
+
+      if (s1 && ids[0]) s1.value = ids[0];
+      if (s2 && ids[1]) s2.value = ids[1];
+      if (s3) s3.value = ids[2] || '';
+
+      renderComparison(ids);
+    };
+
+    function renderComparison(ids) {
+      const selected = ids.map(id => allVendors.find(v => v.id === id)).filter(Boolean);
+      const table = document.getElementById('comparisonTable');
+      if (!table || selected.length === 0) return;
+
+      const colClass = selected.length === 3 ? 'compare-col-3' : 'compare-col';
+
+      let html = '';
+
+      // Header row: Photo & Name
+      html += `<tr><th>Provider</th>`;
+      selected.forEach(v => {
+        html += `
+          <td class="${colClass}">
+            <div style="border-radius: 1rem; overflow: hidden; height: 160px; margin-bottom: 0.75rem;">
+              <img src="${v.coverImage}" alt="${v.businessName}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <span class="vendor-category-tag">${v.category}</span>
+            <h3 style="font-size: 1.15rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin: 0.35rem 0;">
+              ${v.businessName}
+            </h3>
+            <p style="font-size: 0.75rem; color: var(--stone-500);">📍 ${v.city}, ${v.state}</p>
+          </td>
+        `;
+      });
+      html += `</tr>`;
+
+      // Trust & Rating
+      html += `<tr><th>Trust &amp; Rating</th>`;
+      selected.forEach(v => {
+        html += `
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <span style="font-size: 0.95rem; font-weight: 800; color: var(--gold-600);">★ ${v.rating}</span>
+              <span style="font-size: 0.75rem; color: var(--stone-500);">(${v.reviewCount} reviews)</span>
+            </div>
+            <span class="badge-verified" style="display: inline-block;">✓ ${v.isVerified ? 'Verified Partner' : 'Registered'}</span>
+            <div style="font-size: 0.75rem; color: var(--stone-600); margin-top: 0.35rem;">
+              ⏳ ${v.yearsOfExperience || 5} Years of Experience
+            </div>
+          </td>
+        `;
+      });
+      html += `</tr>`;
+
+      // Starting Price
+      html += `<tr><th>Starting Rate</th>`;
+      selected.forEach(v => {
+        html += `
+          <td>
+            <div style="font-size: 1.4rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-800);">
+              ₹${v.startingPrice.toLocaleString('en-IN')}
+            </div>
+            <span style="font-size: 0.75rem; color: var(--stone-500);">${v.priceUnit || 'per event'}</span>
+          </td>
+        `;
+      });
+      html += `</tr>`;
+
+      // Packages
+      html += `<tr><th>Packages Breakdown</th>`;
+      selected.forEach(v => {
+        const pkgs = v.packages || [];
+        html += `<td><div style="display: flex; flex-direction: column; gap: 0.75rem;">`;
+        pkgs.forEach(p => {
+          html += `
+            <div style="background: var(--stone-50); border: 1px solid ${p.isPopular ? 'var(--gold-400)' : 'var(--stone-200)'}; border-radius: 0.75rem; padding: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <strong style="font-size: 0.8rem; color: var(--maroon-900);">${p.name}</strong>
+                <span style="font-size: 0.85rem; font-weight: 800; color: var(--maroon-950);">₹${p.price.toLocaleString('en-IN')}</span>
+              </div>
+              <ul style="font-size: 0.7rem; color: var(--stone-600); margin-top: 0.35rem; padding-left: 1rem; line-height: 1.4;">
+                ${(p.features || []).map(f => `<li>${f}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        });
+        html += `</div></td>`;
+      });
+      html += `</tr>`;
+
+      // Supported Ceremonies
+      html += `<tr><th>Supported Ceremonies</th>`;
+      selected.forEach(v => {
+        const events = v.supportedEvents || [];
+        html += `
+          <td>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.25rem;">
+              ${events.map(ev => `<span class="feature-tag-chip"><span class="match-check">✓</span>${ev}</span>`).join('')}
+            </div>
+          </td>
+        `;
+      });
+      html += `</tr>`;
+
+      // Direct Action Row
+      html += `<tr><th>Connect &amp; Book</th>`;
+      selected.forEach(v => {
+        html += `
+          <td>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <button onclick="openEnquiry('${v.id}')" class="btn-submit" style="width: 100%; padding: 0.65rem 1rem; font-size: 0.8rem;">
+                💬 Request Custom Quote
+              </button>
+              <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile" style="text-align: center; text-decoration: none; padding: 0.6rem 1rem; font-size: 0.8rem;">
+                👁️ View Full Portfolio
+              </a>
+            </div>
+          </td>
+        `;
+      });
+      html += `</tr>`;
+
+      table.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', initVendors);
+  </script>
+</body>
+</html>

@@ -72,6 +72,30 @@ let memNegotiations = [
   }
 ];
 
+let memPlans = [
+  {
+    id: 'plan-101',
+    customerName: 'Aarav Malhotra',
+    customerPhone: '+91 98199 44321',
+    weddingLocation: {
+      state: 'Rajasthan',
+      district: 'Udaipur',
+      taluka: 'Girwa',
+      city: 'Udaipur'
+    },
+    totalBudget: 2850000,
+    totalGuests: 450,
+    startDate: '2026-12-18',
+    endDate: '2026-12-20',
+    functions: [
+      { event: 'Mehendi', date: '2026-12-18', venue: 'Lakefront Lawn', services: ['Mehendi artists', 'Flower decorators', 'Live food counters'], allocatedBudget: 350000 },
+      { event: 'Sangeet', date: '2026-12-19', venue: 'Grand Ballroom', services: ['DJs', 'Stage designers', 'Lighting providers', 'Photography'], allocatedBudget: 750000 },
+      { event: 'Wedding Ceremony', date: '2026-12-20', venue: 'Heritage Palace Courtyard', services: ['Mandap decorators', 'Catering services', 'Cinematographers', 'Pandits'], allocatedBudget: 1750000 }
+    ],
+    createdAt: new Date().toISOString()
+  }
+];
+
 // MongoDB Atlas Connection
 let isDbConnected = false;
 async function connectDB() {
@@ -168,6 +192,122 @@ app.get('/api/vendors/:id', async (req, res) => {
     }
     if (!vendor) return res.status(404).json({ success: false, error: 'Vendor not found' });
     res.json({ success: true, data: vendor });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Register New Vendor Profile
+app.post('/api/vendors', async (req, res) => {
+  try {
+    const {
+      name,
+      businessName,
+      tagline,
+      category,
+      subcategories,
+      description,
+      phone,
+      email,
+      state,
+      district,
+      taluka,
+      city,
+      locality,
+      coverImage,
+      gallery,
+      startingPrice,
+      priceUnit,
+      yearsOfExperience,
+      packages,
+      supportedEvents
+    } = req.body;
+
+    if (!businessName || !category || !phone || !city || !state || !startingPrice) {
+      return res.status(400).json({
+        success: false,
+        error: 'Business Name, Category, Phone, City, State, and Starting Price are required'
+      });
+    }
+
+    const vendorId = `v-${Date.now()}`;
+    const newVendor = {
+      id: vendorId,
+      name: name || businessName,
+      businessName,
+      tagline: tagline || `Premier ${category} in ${city}`,
+      category,
+      subcategories: Array.isArray(subcategories) && subcategories.length ? subcategories : [category],
+      description: description || `Professional ${category} based in ${city}, providing bespoke wedding services across ${state}.`,
+      phone,
+      email: email || `${businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}@vivah-partners.in`,
+      state,
+      district: district || city,
+      taluka: taluka || city,
+      city,
+      locality: locality || 'Central',
+      coverImage: coverImage || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
+      gallery: Array.isArray(gallery) && gallery.length > 0 ? gallery : [
+        coverImage || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80'
+      ],
+      startingPrice: Number(startingPrice),
+      priceUnit: priceUnit || 'per event',
+      rating: 5.0,
+      reviewCount: 1,
+      isVerified: true,
+      yearsOfExperience: Number(yearsOfExperience) || 4,
+      packages: Array.isArray(packages) && packages.length > 0 ? packages : [
+        {
+          id: `pkg-${Date.now()}-1`,
+          name: 'Silver Classic Package',
+          price: Number(startingPrice),
+          description: 'Essential core services for single-ceremony celebration.',
+          features: ['Standard setup', 'Experienced crew', 'Transportation within city limits'],
+          isPopular: false
+        },
+        {
+          id: `pkg-${Date.now()}-2`,
+          name: 'Gold Grand Package',
+          price: Math.round(Number(startingPrice) * 1.5),
+          description: 'Most popular all-inclusive package with premium touches.',
+          features: ['Premium setup & styling', 'Senior supervisor on site', 'Extended coverage hours', 'Complimentary add-on'],
+          isPopular: true
+        },
+        {
+          id: `pkg-${Date.now()}-3`,
+          name: 'Royal Diamond Bespoke',
+          price: Math.round(Number(startingPrice) * 2.2),
+          description: 'Luxury customized multi-day wedding experience.',
+          features: ['VIP styling & luxury inventory', 'Lead founder supervision', 'Full multi-day coordination', 'Custom theme design'],
+          isPopular: false
+        }
+      ],
+      reviews: [
+        {
+          id: `rev-initial`,
+          customerName: 'Priya & Rahul',
+          rating: 5,
+          date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+          comment: 'Outstanding professionalism and punctual service. Highly recommended on Vivah!',
+          event: 'Wedding Ceremony'
+        }
+      ],
+      supportedEvents: Array.isArray(supportedEvents) && supportedEvents.length > 0 ? supportedEvents : ['Wedding Ceremony', 'Sangeet', 'Reception'],
+      featured: false
+    };
+
+    if (isDbConnected) {
+      await Vendor.create(newVendor);
+    }
+    memVendors.unshift(newVendor);
+
+    res.status(201).json({
+      success: true,
+      message: '🎉 Vendor registered successfully! Your profile is live on Vivah.',
+      data: newVendor
+    });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -387,6 +527,103 @@ app.patch('/api/negotiations/:id/lock', async (req, res) => {
   }
 });
 
+// 5.1 Event Plans API (Multi-Day Wedding Builder Storage)
+app.get('/api/plans', async (req, res) => {
+  try {
+    const { phone } = req.query;
+    if (isDbConnected) {
+      const query = phone ? { customerPhone: phone } : {};
+      const plans = await EventPlan.find(query).sort({ createdAt: -1 }).lean();
+      return res.json({ success: true, count: plans.length, data: plans.length ? plans : memPlans });
+    }
+    const filtered = phone ? memPlans.filter(p => p.customerPhone === phone) : memPlans;
+    res.json({ success: true, count: filtered.length, data: filtered });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/plans', async (req, res) => {
+  try {
+    const { customerName, customerPhone, weddingLocation, totalBudget, totalGuests, startDate, endDate, functions } = req.body;
+    if (!customerName || !customerPhone) {
+      return res.status(400).json({ success: false, error: 'Customer name and phone number are required' });
+    }
+    const newPlan = {
+      id: `plan-${Date.now()}`,
+      customerName,
+      customerPhone,
+      weddingLocation: weddingLocation || { state: 'Rajasthan', district: 'Udaipur', city: 'Udaipur' },
+      totalBudget: Number(totalBudget) || 2500000,
+      totalGuests: Number(totalGuests) || 350,
+      startDate: startDate || '2026-12-18',
+      endDate: endDate || '2026-12-20',
+      functions: Array.isArray(functions) ? functions : [],
+      createdAt: new Date().toISOString()
+    };
+    if (isDbConnected) {
+      await EventPlan.create(newPlan);
+    }
+    memPlans.unshift(newPlan);
+    res.status(201).json({
+      success: true,
+      message: '🎉 Multi-event wedding itinerary and service budget saved in MongoDB Atlas!',
+      data: newPlan
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// 5.2 Compare Vendors API
+app.get('/api/vendors-compare', async (req, res) => {
+  try {
+    const { ids } = req.query;
+    if (!ids) return res.status(400).json({ success: false, error: 'Please supply comma-separated vendor ids' });
+    const idList = ids.split(',').map(s => s.trim());
+    let list = [];
+    if (isDbConnected) {
+      list = await Vendor.find({ id: { $in: idList } }).lean();
+    }
+    if (list.length === 0) {
+      list = memVendors.filter(v => idList.includes(v.id));
+    }
+    res.json({ success: true, count: list.length, data: list });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// 5.3 Simulated Phone OTP Login API
+app.post('/api/auth/otp-request', (req, res) => {
+  const { phone, name } = req.body;
+  if (!phone) return res.status(400).json({ success: false, error: 'Phone number is required' });
+  res.json({
+    success: true,
+    message: `OTP sent to ${phone}`,
+    otp: '1234',
+    note: 'Demo mode: Use 1234 to verify'
+  });
+});
+
+app.post('/api/auth/verify', (req, res) => {
+  const { phone, otp, name } = req.body;
+  if (otp !== '1234') {
+    return res.status(400).json({ success: false, error: 'Invalid OTP. Please enter 1234 for demo.' });
+  }
+  const user = {
+    phone,
+    name: name || 'Valued Guest',
+    role: 'customer',
+    token: `tok-${Date.now()}`
+  };
+  res.json({
+    success: true,
+    message: 'Welcome to Vivah Marketplace!',
+    user
+  });
+});
+
 // 6. Admin Stats API
 app.get('/api/admin/stats', async (req, res) => {
   try {
@@ -441,10 +678,12 @@ app.all('/api/seed', async (req, res) => {
     await Booking.insertMany(memBookings);
     await Negotiation.deleteMany({});
     await Negotiation.insertMany(memNegotiations);
+    await EventPlan.deleteMany({});
+    await EventPlan.insertMany(memPlans);
 
     res.json({
       success: true,
-      message: '✨ Successfully seeded MongoDB Atlas with Vendors, Packages, Enquiries, Bookings, and Deal Room threads!',
+      message: '✨ Successfully seeded MongoDB Atlas with Vendors, Packages, Enquiries, Bookings, Plans, and Deal Room threads!',
       vendorsCount: INITIAL_VENDORS.length,
       enquiriesCount: INITIAL_ENQUIRIES.length
     });

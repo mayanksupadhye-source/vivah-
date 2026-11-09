@@ -31,9 +31,11 @@
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="compare.html" class="nav-link">Compare</a>
         <a href="planner.html" class="nav-link">Wedding Planner</a>
         <a href="dashboard.html" class="nav-link">Dashboard</a>
         <a href="negotiation.html" class="nav-link">Deal Room</a>
+        <a href="register-vendor.html" class="nav-link">Join as Vendor</a>
       </nav>
 
       <div class="nav-actions">
@@ -62,9 +64,25 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const vendorId = urlParams.get('id') || 'v-101';
-    const vendor = (typeof INITIAL_VENDORS !== 'undefined' ? INITIAL_VENDORS : []).find(v => v.id === vendorId) || INITIAL_VENDORS[0];
+    let vendor = (typeof INITIAL_VENDORS !== 'undefined' ? INITIAL_VENDORS : []).find(v => v.id === vendorId);
 
     const container = document.getElementById('vendorProfileContainer');
+
+    async function initProfile() {
+      if (!vendor) {
+        try {
+          const res = await fetch(`/api/vendors/${vendorId}`);
+          const d = await res.json();
+          if (d.success && d.data) {
+            vendor = d.data;
+          }
+        } catch(e) {}
+      }
+      if (!vendor && typeof INITIAL_VENDORS !== 'undefined') {
+        vendor = INITIAL_VENDORS[0];
+      }
+      renderVendorProfile();
+    }
 
     function renderVendorProfile() {
       if (!vendor) {
@@ -278,7 +296,7 @@
       if (budgetInput) budgetInput.value = price;
     };
 
-    renderVendorProfile();
+    initProfile();
   </script>
 </body>
 </html>

@@ -11,6 +11,7 @@ const Vendor = require('./models/Vendor');
 const Enquiry = require('./models/Enquiry');
 const Booking = require('./models/Booking');
 const Negotiation = require('./models/Negotiation');
+const EventPlan = require('./models/EventPlan');
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -80,6 +81,30 @@ async function seed() {
       ]
     });
     console.log('✓ Seeded initial Deal Room quotation negotiation thread.');
+
+    // 5. Seed Event Plan
+    await EventPlan.deleteMany({});
+    await EventPlan.create({
+      id: 'plan-101',
+      customerName: 'Aarav Malhotra',
+      customerPhone: '+91 98199 44321',
+      weddingLocation: {
+        state: 'Rajasthan',
+        district: 'Udaipur',
+        taluka: 'Girwa',
+        city: 'Udaipur'
+      },
+      totalBudget: 2850000,
+      totalGuests: 450,
+      startDate: '2026-12-18',
+      endDate: '2026-12-20',
+      functions: [
+        { event: 'Mehendi', date: '2026-12-18', venue: 'Lakefront Lawn', services: ['Mehendi artists', 'Flower decorators', 'Live food counters'], allocatedBudget: 350000 },
+        { event: 'Sangeet', date: '2026-12-19', venue: 'Grand Ballroom', services: ['DJs', 'Stage designers', 'Lighting providers', 'Photography'], allocatedBudget: 750000 },
+        { event: 'Wedding Ceremony', date: '2026-12-20', venue: 'Heritage Palace Courtyard', services: ['Mandap decorators', 'Catering services', 'Cinematographers', 'Pandits'], allocatedBudget: 1750000 }
+      ]
+    });
+    console.log('✓ Seeded initial Multi-Day Wedding Event Plan.');
 
     console.log('\n✨ Database seeding completed successfully! You can now start the server with npm start.');
     process.exit(0);

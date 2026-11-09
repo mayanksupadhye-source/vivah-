@@ -34,9 +34,11 @@
       <nav class="nav-links">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="compare.html" class="nav-link">Compare</a>
         <a href="planner.html" class="nav-link">Wedding Planner</a>
         <a href="dashboard.html" class="nav-link">Dashboard</a>
         <a href="negotiation.html" class="nav-link">Deal Room</a>
+        <a href="register-vendor.html" class="nav-link">Join as Vendor</a>
       </nav>
 
       <!-- Desktop CTA & Mobile Hamburger -->
@@ -59,9 +61,11 @@
     <div class="mobile-drawer" id="mobileDrawer">
       <a href="index.html" class="mobile-nav-link active">Home</a>
       <a href="vendors.html" class="mobile-nav-link">Explore 1,500+ Vendors</a>
+      <a href="compare.html" class="mobile-nav-link">Compare Providers</a>
       <a href="planner.html" class="mobile-nav-link">Multi-Event Wedding Planner</a>
       <a href="dashboard.html" class="mobile-nav-link">Operations Dashboard</a>
       <a href="negotiation.html" class="mobile-nav-link">Deal Room &amp; Negotiations</a>
+      <a href="register-vendor.html" class="mobile-nav-link">Join as a Vendor Partner</a>
       <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
         <a href="planner.html" class="btn-submit" style="text-align: center; text-decoration: none;">Plan Your Wedding Events</a>
         <a href="dashboard.html?role=vendor" class="btn-view-profile" style="text-align: center; text-decoration: none;">Vendor Partner Login</a>
@@ -562,35 +566,39 @@
   <script>
     // Populate Featured Vendors on Landing Page
     const grid = document.getElementById('featuredVendorGrid');
-    if (grid && typeof INITIAL_VENDORS !== 'undefined') {
-      grid.innerHTML = INITIAL_VENDORS.slice(0, 6).map(v => `
+    function renderFeatured(vendors) {
+      if (!grid) return;
+      grid.innerHTML = vendors.slice(0, 6).map(v => `
         <div class="vendor-card">
           <div class="vendor-cover-wrap">
             <img src="${v.coverImage}" alt="${v.businessName}">
             <div class="verified-pill">🛡️ Verified</div>
             <div class="vendor-loc-badge">📍 ${v.city}, ${v.state}</div>
-            <div class="vendor-rating-badge">★ ${v.rating.toFixed(1)} (${v.reviewCount})</div>
+            <div class="vendor-rating-badge">★ ${(Number(v.rating) || 5.0).toFixed(1)} (${v.reviewCount || 1})</div>
           </div>
           <div class="vendor-body">
             <div>
               <span class="vendor-category-tag">${v.category}</span>
               <h3 class="vendor-name">${v.businessName}</h3>
-              <p class="vendor-tagline">"${v.tagline}"</p>
+              <p class="vendor-tagline">"${v.tagline || ''}"</p>
               <div class="vendor-tags">
-                ${v.subcategories.slice(0, 3).map(sub => `<span class="tag-chip">${sub}</span>`).join('')}
+                ${(v.subcategories || []).slice(0, 3).map(sub => `<span class="tag-chip">${sub}</span>`).join('')}
               </div>
             </div>
             <div class="vendor-footer">
               <div class="vendor-price">
                 <span class="vendor-price-label">Starts from</span>
-                <span class="vendor-price-val">₹${v.startingPrice.toLocaleString('en-IN')}</span>
+                <span class="vendor-price-val">₹${Number(v.startingPrice).toLocaleString('en-IN')}</span>
               </div>
-              <div style="display: flex; gap: 0.5rem;">
-                <button onclick="openEnquiry('${v.id}')" class="btn-view-profile" style="background: #fef3c7; color: #78350f; border-color: #fde68a; cursor: pointer;">
+              <div style="display: flex; gap: 0.35rem;">
+                <a href="compare.html" title="Compare" class="btn-view-profile" style="padding: 0.45rem 0.6rem; font-size: 0.75rem; text-decoration: none;">
+                  ⚖️
+                </a>
+                <button onclick="openEnquiry('${v.id}')" class="btn-view-profile" style="background: #fef3c7; color: #78350f; border-color: #fde68a; cursor: pointer; padding: 0.45rem 0.75rem; font-size: 0.75rem;">
                   📞 Inquire
                 </button>
-                <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile">
-                  View Profile
+                <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile" style="padding: 0.45rem 0.75rem; font-size: 0.75rem;">
+                  Profile
                 </a>
               </div>
             </div>
@@ -598,6 +606,13 @@
         </div>
       `).join('');
     }
+
+    if (typeof INITIAL_VENDORS !== 'undefined') {
+      renderFeatured(INITIAL_VENDORS);
+    }
+    fetch('/api/vendors').then(r => r.json()).then(d => {
+      if (d.success && d.data && d.data.length) renderFeatured(d.data);
+    }).catch(() => {});
   </script>
 </body>
 </html>

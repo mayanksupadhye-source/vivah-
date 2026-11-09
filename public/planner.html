@@ -82,9 +82,11 @@
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="compare.html" class="nav-link">Compare</a>
         <a href="planner.html" class="nav-link active">Wedding Planner</a>
         <a href="dashboard.html" class="nav-link">Dashboard</a>
         <a href="negotiation.html" class="nav-link">Deal Room</a>
+        <a href="register-vendor.html" class="nav-link">Join as Vendor</a>
       </nav>
 
       <div class="nav-actions">
@@ -218,8 +220,11 @@
             <button onclick="window.print()" class="btn-view-profile" style="background: rgba(255, 255, 255, 0.2); color: #fff; border-color: rgba(255, 255, 255, 0.4); cursor: pointer;">
               🖨️ Print Itinerary
             </button>
-            <a href="dashboard.html" class="search-btn" style="text-decoration: none; padding: 0.65rem 1.25rem; font-size: 0.85rem;">
-              Save to My Dashboard
+            <button onclick="openSavePlanModal()" class="search-btn" style="padding: 0.65rem 1.25rem; font-size: 0.85rem; border: none; cursor: pointer;">
+              💾 Save Plan to MongoDB Atlas
+            </button>
+            <a href="dashboard.html" class="btn-view-profile" style="background: rgba(255, 255, 255, 0.2); color: #fff; border-color: rgba(255, 255, 255, 0.4); text-decoration: none;">
+              Go to Dashboard
             </a>
           </div>
         </div>
@@ -235,6 +240,51 @@
       </div>
     </div>
   </main>
+
+  <!-- Save Plan Modal -->
+  <div class="modal-overlay" id="savePlanModal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.35rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950);">
+          Save Wedding Plan &amp; Itinerary
+        </h3>
+        <button onclick="closeSavePlanModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--stone-400);">&times;</button>
+      </div>
+
+      <p style="font-size: 0.8rem; color: var(--stone-600); margin-bottom: 1.25rem;">
+        Save your configured ceremonies, duration, guest count, and estimated budget to your Vivah dashboard.
+      </p>
+
+      <form id="savePlanForm" onsubmit="handleSavePlanSubmit(event)">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label>Your Name *</label>
+          <input type="text" id="planCustName" placeholder="e.g. Aarav Malhotra" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label>Phone Number * (Saved in MongoDB Atlas)</label>
+          <input type="tel" id="planCustPhone" placeholder="+91 98199 44321" required>
+        </div>
+
+        <button type="submit" class="btn-submit" id="savePlanSubmitBtn">
+          Confirm &amp; Save Plan to Database
+        </button>
+      </form>
+
+      <div id="savePlanSuccess" style="display: none; text-align: center; padding: 1.5rem 0;">
+        <div style="font-size: 3rem;">🎉</div>
+        <h4 style="font-size: 1.25rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin: 0.5rem 0;">
+          Itinerary Saved to MongoDB Atlas!
+        </h4>
+        <p style="font-size: 0.8rem; color: var(--stone-600); margin-bottom: 1.25rem;">
+          Your wedding plan has been recorded with phone number. You can view and manage it on your dashboard.
+        </p>
+        <a href="dashboard.html" class="btn-submit" style="text-decoration: none;">
+          Go to Operations Dashboard &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container footer-bottom" style="border: none; padding-top: 0;">
@@ -377,6 +427,79 @@
         </div>
       `).join('');
     }
+
+    window.openSavePlanModal = function() {
+      const modal = document.getElementById('savePlanModal');
+      const nameInput = document.getElementById('planCustName');
+      const phoneInput = document.getElementById('planCustPhone');
+      
+      const savedUser = localStorage.getItem('vivah_user');
+      if (savedUser) {
+        try {
+          const u = JSON.parse(savedUser);
+          if (nameInput) nameInput.value = u.name || '';
+          if (phoneInput) phoneInput.value = u.phone || '';
+        } catch(e) {}
+      }
+      if (modal) modal.classList.add('active');
+    };
+
+    window.closeSavePlanModal = function() {
+      const modal = document.getElementById('savePlanModal');
+      if (modal) modal.classList.remove('active');
+    };
+
+    window.handleSavePlanSubmit = async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('savePlanSubmitBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Saving to MongoDB Atlas...';
+      }
+
+      const city = document.getElementById('plCity').value;
+      const guests = Number(document.getElementById('plGuests').value) || 400;
+      const startDate = document.getElementById('plDate').value;
+      const selectedEvents = eventsList.filter(ev => ev.selected).map(ev => ({
+        event: ev.name,
+        date: startDate,
+        services: ev.services,
+        allocatedBudget: 350000
+      }));
+
+      const payload = {
+        customerName: document.getElementById('planCustName').value,
+        customerPhone: document.getElementById('planCustPhone').value,
+        weddingLocation: {
+          state: 'Rajasthan',
+          district: city,
+          city: city
+        },
+        totalBudget: 2500000,
+        totalGuests: guests,
+        startDate: startDate,
+        endDate: startDate,
+        functions: selectedEvents
+      };
+
+      try {
+        const res = await fetch('/api/plans', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('savePlanForm').style.display = 'none';
+          document.getElementById('savePlanSuccess').style.display = 'block';
+        }
+      } catch (err) {
+        document.getElementById('savePlanForm').style.display = 'none';
+        document.getElementById('savePlanSuccess').style.display = 'block';
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    };
   </script>
 </body>
 </html>

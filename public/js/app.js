@@ -82,6 +82,18 @@ document.addEventListener('DOMContentLoaded', () => {
       enquiryForm.reset();
     }
     if (enquiryModal) enquiryModal.classList.add('active');
+
+    // Auto-fill from localStorage if available
+    try {
+      const savedUser = localStorage.getItem('vivah_user');
+      if (savedUser) {
+        const u = JSON.parse(savedUser);
+        const nameField = document.getElementById('custName');
+        const phoneField = document.getElementById('custPhone');
+        if (nameField && u.name && !nameField.value) nameField.value = u.name;
+        if (phoneField && u.phone && !phoneField.value) phoneField.value = u.phone;
+      }
+    } catch(e) {}
   };
 
   if (closeEnquiryModal && enquiryModal) {
@@ -129,6 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const data = await res.json();
         if (data.success) {
+          try {
+            localStorage.setItem('vivah_user', JSON.stringify({
+              name: payload.customerName,
+              phone: payload.customerPhone
+            }));
+          } catch(e) {}
           if (enquiryForm) enquiryForm.style.display = 'none';
           if (enquirySuccessMsg) {
             enquirySuccessMsg.style.display = 'block';

@@ -33,9 +33,11 @@
       <nav class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
         <a href="vendors.html" class="nav-link active">Explore Vendors</a>
+        <a href="compare.html" class="nav-link">Compare</a>
         <a href="planner.html" class="nav-link">Wedding Planner</a>
         <a href="dashboard.html" class="nav-link">Dashboard</a>
         <a href="negotiation.html" class="nav-link">Deal Room</a>
+        <a href="register-vendor.html" class="nav-link">Join as Vendor</a>
       </nav>
 
       <div class="nav-actions">
@@ -52,9 +54,11 @@
     <div class="mobile-drawer" id="mobileDrawer">
       <a href="index.html" class="mobile-nav-link">Home</a>
       <a href="vendors.html" class="mobile-nav-link active">Explore Vendors</a>
+      <a href="compare.html" class="mobile-nav-link">Compare Providers</a>
       <a href="planner.html" class="mobile-nav-link">Wedding Planner</a>
       <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
       <a href="negotiation.html" class="mobile-nav-link">Deal Room</a>
+      <a href="register-vendor.html" class="mobile-nav-link">Join as Vendor</a>
     </div>
   </header>
 
@@ -293,6 +297,15 @@
       btnMapView.style.color = 'var(--stone-500)';
     });
 
+    let allVendors = typeof INITIAL_VENDORS !== 'undefined' ? [...INITIAL_VENDORS] : [];
+
+    fetch('/api/vendors').then(r => r.json()).then(d => {
+      if (d.success && d.data && d.data.length) {
+        allVendors = d.data;
+        renderDirectory();
+      }
+    }).catch(() => {});
+
     function renderDirectory() {
       const q = dirSearch.value.trim().toLowerCase();
       const cat = dirCategory.value;
@@ -304,7 +317,7 @@
 
       priceLabel.textContent = `₹${maxP.toLocaleString('en-IN')}`;
 
-      let list = (typeof INITIAL_VENDORS !== 'undefined' ? INITIAL_VENDORS : []).filter(v => {
+      let list = allVendors.filter(v => {
         if (cat !== 'All' && v.category !== cat) return false;
         if (city !== 'All' && !v.city.toLowerCase().includes(city.toLowerCase())) return false;
         if (evt !== 'All' && !v.supportedEvents.includes(evt)) return false;
@@ -364,12 +377,15 @@
                 <span class="vendor-price-label">Starts from</span>
                 <span class="vendor-price-val">₹${v.startingPrice.toLocaleString('en-IN')}</span>
               </div>
-              <div style="display: flex; gap: 0.5rem;">
-                <button onclick="openEnquiry('${v.id}')" class="btn-view-profile" style="background: #fef3c7; color: #78350f; border-color: #fde68a; cursor: pointer;">
+              <div style="display: flex; gap: 0.35rem; align-items: center;">
+                <a href="compare.html" title="Compare Providers" class="btn-view-profile" style="padding: 0.45rem 0.6rem; font-size: 0.75rem; text-decoration: none;">
+                  ⚖️
+                </a>
+                <button onclick="openEnquiry('${v.id}')" class="btn-view-profile" style="background: #fef3c7; color: #78350f; border-color: #fde68a; cursor: pointer; padding: 0.45rem 0.75rem; font-size: 0.75rem;">
                   📞 Inquire
                 </button>
-                <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile">
-                  View Profile
+                <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile" style="padding: 0.45rem 0.75rem; font-size: 0.75rem;">
+                  Profile
                 </a>
               </div>
             </div>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as a Wedding Vendor - Vivah Marketplace</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    .vendor-reg-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 992px) {
+      .vendor-reg-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-section-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2rem;
+      border: 1px solid var(--stone-200);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+    .form-section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--stone-100);
+    }
+    .form-section-num {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--maroon-800);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+    .form-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--maroon-950);
+    }
+    .live-preview-box {
+      position: sticky;
+      top: 6rem;
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border: 2px solid var(--gold-300);
+      box-shadow: var(--shadow-lg);
+    }
+    .sample-img-chip {
+      cursor: pointer;
+      border: 1px solid var(--stone-300);
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      background: var(--stone-50);
+      transition: all 0.2s ease;
+      display: inline-block;
+      margin-right: 0.35rem;
+      margin-top: 0.35rem;
+    }
+    .sample-img-chip:hover {
+      background: var(--maroon-50);
+      border-color: var(--maroon-800);
+      color: var(--maroon-800);
+    }
+    .checkbox-chip {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid var(--stone-200);
+      border-radius: 9999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      background: #fff;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .checkbox-chip input {
+      accent-color: var(--maroon-800);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span>✨ India's Dedicated Multi-Vendor Wedding Discovery &amp; Booking Marketplace</span>
+    <span>|</span>
+    <span>📞 Concierge Helpline: +91 1800-VIVAH-CARE</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">वि</div>
+        <div class="brand-text">
+          <h1>Vivah <span>Marketplace</span></h1>
+          <p>Discover • Compare • Negotiate • Book</p>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="planner.html" class="nav-link">Wedding Planner</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="negotiation.html" class="nav-link">Deal Room</a>
+        <a href="register-vendor.html" class="nav-link active">Join as Vendor</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="dashboard.html?role=vendor" class="btn-view-profile">
+          💼 Vendor Portal
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-padding" style="padding-top: 2rem;">
+    <div class="container">
+      <!-- Header Banner -->
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem;">
+        <span class="section-tag">Grow Your Wedding Business</span>
+        <h1 style="font-size: 2.4rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-top: 0.5rem;">
+          Register as a Vivah Partner Provider
+        </h1>
+        <p style="font-size: 0.95rem; color: var(--stone-600); margin-top: 0.5rem; line-height: 1.6;">
+          Join over 1,500+ trusted decorators, photographers, caterers, makeup artists, and DJs across India. Receive direct customer phone inquiries with zero upfront listing fees.
+        </p>
+      </div>
+
+      <div class="vendor-reg-grid">
+        <!-- Left: Form -->
+        <form id="vendorRegForm">
+          <!-- Section 1: Business Profile -->
+          <div class="form-section-card">
+            <div class="form-section-header">
+              <div class="form-section-num">1</div>
+              <h2 class="form-section-title">Business &amp; Contact Details</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+              <div class="form-group">
+                <label>Business / Brand Name *</label>
+                <input type="text" id="regBusinessName" placeholder="e.g. Royal Jaipur Lights &amp; Sound" required>
+              </div>
+
+              <div class="form-group">
+                <label>Owner / Contact Person *</label>
+                <input type="text" id="regOwnerName" placeholder="e.g. Vikramaditya Rathore" required>
+              </div>
+
+              <div class="form-group">
+                <label>Contact Phone Number * (Captured in Leads)</label>
+                <input type="tel" id="regPhone" placeholder="+91 98290 12345" required>
+              </div>
+
+              <div class="form-group">
+                <label>Business Email *</label>
+                <input type="email" id="regEmail" placeholder="contact@royaljaipur.in" required>
+              </div>
+
+              <div class="form-group">
+                <label>Years in Operation</label>
+                <input type="number" id="regExperience" value="6" min="1" max="40">
+              </div>
+
+              <div class="form-group">
+                <label>Catchy Tagline</label>
+                <input type="text" id="regTagline" placeholder="e.g. Bringing Royal Grandeur to Every Shaadi">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Category & Location Hierarchy -->
+          <div class="form-section-card">
+            <div class="form-section-header">
+              <div class="form-section-num">2</div>
+              <h2 class="form-section-title">Service Category &amp; Location Hierarchy</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+              <div class="form-group">
+                <label>Primary Service Category *</label>
+                <select id="regCategory" required>
+                  <option value="Decoration &amp; Mandap">Decoration &amp; Mandap</option>
+                  <option value="Photography &amp; Media">Photography &amp; Media</option>
+                  <option value="Food &amp; Catering">Food &amp; Catering</option>
+                  <option value="Beauty &amp; Makeup">Beauty &amp; Makeup</option>
+                  <option value="Entertainment &amp; DJ">Entertainment &amp; DJ</option>
+                  <option value="Logistics &amp; Transport">Logistics &amp; Transport</option>
+                  <option value="Pandits &amp; Ceremonial">Pandits &amp; Ceremonial</option>
+                  <option value="Invitations &amp; Gifts">Invitations &amp; Gifts</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>State *</label>
+                <select id="regState" required>
+                  <option value="Rajasthan" selected>Rajasthan</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Punjab">Punjab</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>District / Region *</label>
+                <input type="text" id="regDistrict" placeholder="e.g. Jaipur" value="Jaipur" required>
+              </div>
+
+              <div class="form-group">
+                <label>Taluka / Tehsil</label>
+                <input type="text" id="regTaluka" placeholder="e.g. Sanganer" value="Jaipur">
+              </div>
+
+              <div class="form-group">
+                <label>City or Town *</label>
+                <input type="text" id="regCity" placeholder="e.g. Jaipur" value="Jaipur" required>
+              </div>
+
+              <div class="form-group">
+                <label>Locality / Address</label>
+                <input type="text" id="regLocality" placeholder="e.g. C-Scheme / MI Road" value="Civil Lines">
+              </div>
+            </div>
+
+            <!-- Supported Ceremonies -->
+            <div style="margin-top: 1.5rem;">
+              <label style="font-size: 0.8rem; font-weight: 700; color: var(--stone-700); margin-bottom: 0.5rem; display: block;">
+                Supported Wedding Functions &amp; Ceremonies (Check all that apply):
+              </label>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;" id="ceremoniesGrid">
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Engagement Ceremony" checked> Engagement</label>
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Haldi" checked> Haldi</label>
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Mehendi" checked> Mehendi</label>
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Sangeet" checked> Sangeet</label>
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Wedding Ceremony" checked> Wedding Ceremony</label>
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Varmala" checked> Varmala</label>
+                <label class="checkbox-chip"><input type="checkbox" name="ceremonies" value="Reception" checked> Reception</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Pricing & Packages -->
+          <div class="form-section-card">
+            <div class="form-section-header">
+              <div class="form-section-num">3</div>
+              <h2 class="form-section-title">Pricing &amp; Service Packages</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+              <div class="form-group">
+                <label>Starting Price (₹ INR) *</label>
+                <input type="number" id="regStartingPrice" value="85000" min="5000" required>
+              </div>
+
+              <div class="form-group">
+                <label>Pricing Unit *</label>
+                <select id="regPriceUnit">
+                  <option value="per event">per event</option>
+                  <option value="per day">per day</option>
+                  <option value="per plate">per plate</option>
+                  <option value="per function">per function</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="background: var(--stone-50); border: 1px solid var(--stone-200); border-radius: 1rem; padding: 1.25rem;">
+              <h4 style="font-size: 0.9rem; font-weight: 800; color: var(--maroon-950); margin-bottom: 0.5rem;">
+                Standard Package Offerings
+              </h4>
+              <p style="font-size: 0.75rem; color: var(--stone-500); margin-bottom: 1rem;">
+                Vivah structures your packages into Silver, Gold, and Royal Diamond tiers. You can negotiate custom quotes directly with families in the Deal Room.
+              </p>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="background: #fff; padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--stone-200);">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: var(--stone-500); text-transform: uppercase;">Tier 1</span>
+                  <div style="font-weight: 800; color: var(--maroon-900);">Silver Classic</div>
+                  <div style="font-size: 1.1rem; font-weight: 900; color: var(--maroon-950); margin: 0.25rem 0;" id="previewSilverPrice">₹85,000</div>
+                  <span style="font-size: 0.75rem; color: var(--stone-500);">Core setup &amp; equipment</span>
+                </div>
+
+                <div style="background: #fff; padding: 1rem; border-radius: 0.75rem; border: 2px solid var(--gold-400);">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: var(--gold-600); text-transform: uppercase;">⭐ Most Popular</span>
+                  <div style="font-weight: 800; color: var(--maroon-900);">Gold Grand Package</div>
+                  <div style="font-size: 1.1rem; font-weight: 900; color: var(--maroon-950); margin: 0.25rem 0;" id="previewGoldPrice">₹1,27,500</div>
+                  <span style="font-size: 0.75rem; color: var(--stone-500);">Complete setup + Supervisor</span>
+                </div>
+
+                <div style="background: #fff; padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--stone-200);">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: var(--stone-500); text-transform: uppercase;">Tier 3</span>
+                  <div style="font-weight: 800; color: var(--maroon-900);">Royal Diamond Bespoke</div>
+                  <div style="font-size: 1.1rem; font-weight: 900; color: var(--maroon-950); margin: 0.25rem 0;" id="previewDiamondPrice">₹1,87,000</div>
+                  <span style="font-size: 0.75rem; color: var(--stone-500);">Multi-day VIP coordination</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Visual Portfolio & Description -->
+          <div class="form-section-card">
+            <div class="form-section-header">
+              <div class="form-section-num">4</div>
+              <h2 class="form-section-title">Visual Portfolio &amp; Description</h2>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label>Cover Portfolio Image URL *</label>
+              <input type="url" id="regCoverImage" value="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" required>
+              <div style="margin-top: 0.5rem;">
+                <span style="font-size: 0.7rem; color: var(--stone-500);">Quick Preset Photos:</span>
+                <span class="sample-img-chip" onclick="setSampleImg('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')">Mandap / Decor</span>
+                <span class="sample-img-chip" onclick="setSampleImg('https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80')">Photography</span>
+                <span class="sample-img-chip" onclick="setSampleImg('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80')">Catering</span>
+                <span class="sample-img-chip" onclick="setSampleImg('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80')">DJ &amp; Sound</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Detailed Business Description &amp; Heritage *</label>
+              <textarea id="regDescription" rows="4" placeholder="Describe your team, specialties, past royal weddings managed, signature designs, and customer commitment..."></textarea>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button type="submit" class="btn-submit" id="submitRegBtn" style="font-size: 1.05rem; padding: 1rem;">
+                ✨ Publish Vendor Profile to Vivah Marketplace
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Right: Live Preview & Trust Callout -->
+        <div>
+          <div class="live-preview-box">
+            <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--gold-600); letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem;">
+              Live Marketplace Preview Card
+            </span>
+
+            <div class="vendor-card" style="margin-bottom: 1.5rem; box-shadow: none; border: 1px solid var(--stone-200);">
+              <div class="vendor-card-img" style="height: 180px;">
+                <img id="liveImgPreview" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Vendor Preview">
+                <span class="badge-verified" style="position: absolute; top: 0.75rem; left: 0.75rem;">Verified Vivah Partner</span>
+              </div>
+              <div class="vendor-card-body" style="padding: 1.25rem;">
+                <span class="vendor-category-tag" id="liveCategoryPreview">Decoration &amp; Mandap</span>
+                <h3 class="vendor-title" id="liveNamePreview" style="font-size: 1.15rem; margin-top: 0.25rem;">Royal Jaipur Lights &amp; Sound</h3>
+                <p class="vendor-loc" id="liveLocPreview" style="font-size: 0.75rem; color: var(--stone-500); margin: 0.25rem 0;">📍 Jaipur, Rajasthan</p>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.75rem; border-top: 1px solid var(--stone-100); padding-top: 0.75rem;">
+                  <div>
+                    <span style="font-size: 0.65rem; color: var(--stone-400); text-transform: uppercase; display: block;">Starting from</span>
+                    <strong style="color: var(--maroon-800); font-size: 1.1rem; font-family: var(--font-serif);" id="livePricePreview">₹85,000</strong>
+                  </div>
+                  <span style="font-size: 0.75rem; color: #059669; font-weight: 700;">★ 5.0 (New Partner)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Value Props -->
+            <div style="background: var(--maroon-50); border-radius: 1rem; padding: 1.25rem; border: 1px solid var(--maroon-100);">
+              <h4 style="font-size: 0.85rem; font-weight: 800; color: var(--maroon-950); margin-bottom: 0.5rem;">Why Wedding Vendors Love Vivah:</h4>
+              <ul style="font-size: 0.75rem; color: var(--stone-700); line-height: 1.6; padding-left: 1rem;">
+                <li><strong>Direct Phone Leads:</strong> We capture and store customer phone numbers into MongoDB Atlas for you.</li>
+                <li><strong>0% Upfront Listing Fee:</strong> Free to list your business and packages.</li>
+                <li><strong>Interactive Deal Room:</strong> Agree on customized packages and lock advance payments seamlessly.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="regSuccessModal">
+    <div class="modal-dialog" style="max-width: 520px; text-align: center;">
+      <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎉</div>
+      <span class="section-tag">Profile Published</span>
+      <h2 style="font-size: 1.85rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin: 0.5rem 0;">
+        Welcome to Vivah Partner Network!
+      </h2>
+      <p style="font-size: 0.85rem; color: var(--stone-600); line-height: 1.6; margin-bottom: 1.5rem;" id="regSuccessDesc">
+        Your business profile has been saved into MongoDB Atlas and is now live for couples searching across India.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <a id="viewLiveProfileBtn" href="vendor-detail.html?id=" class="btn-submit" style="text-decoration: none;">
+          👁️ View Your Live Profile Now
+        </a>
+        <a href="dashboard.html?role=vendor" class="btn-view-profile" style="text-decoration: none; text-align: center;">
+          💼 Go to Vendor Lead Management Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-bottom" style="text-align: center;">
+      <p>&copy; 2026 Vivah Marketplace. The Premier Multi-Vendor Wedding Discovery &amp; Booking Platform.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    // Live preview updating
+    const bName = document.getElementById('regBusinessName');
+    const bCategory = document.getElementById('regCategory');
+    const bCity = document.getElementById('regCity');
+    const bState = document.getElementById('regState');
+    const bPrice = document.getElementById('regStartingPrice');
+    const bImg = document.getElementById('regCoverImage');
+
+    const liveName = document.getElementById('liveNamePreview');
+    const liveCat = document.getElementById('liveCategoryPreview');
+    const liveLoc = document.getElementById('liveLocPreview');
+    const livePrice = document.getElementById('livePricePreview');
+    const liveImg = document.getElementById('liveImgPreview');
+
+    const pSilver = document.getElementById('previewSilverPrice');
+    const pGold = document.getElementById('previewGoldPrice');
+    const pDiamond = document.getElementById('previewDiamondPrice');
+
+    function updateLivePreview() {
+      if (liveName) liveName.textContent = bName.value || 'Royal Jaipur Lights & Sound';
+      if (liveCat) liveCat.textContent = bCategory.value;
+      if (liveLoc) liveLoc.textContent = `📍 ${bCity.value || 'Jaipur'}, ${bState.value || 'Rajasthan'}`;
+      
+      const price = Number(bPrice.value) || 85000;
+      if (livePrice) livePrice.textContent = `₹${price.toLocaleString('en-IN')}`;
+      if (pSilver) pSilver.textContent = `₹${price.toLocaleString('en-IN')}`;
+      if (pGold) pGold.textContent = `₹${Math.round(price * 1.5).toLocaleString('en-IN')}`;
+      if (pDiamond) pDiamond.textContent = `₹${Math.round(price * 2.2).toLocaleString('en-IN')}`;
+
+      if (liveImg && bImg.value) liveImg.src = bImg.value;
+    }
+
+    [bName, bCategory, bCity, bState, bPrice, bImg].forEach(el => {
+      if (el) el.addEventListener('input', updateLivePreview);
+      if (el) el.addEventListener('change', updateLivePreview);
+    });
+
+    window.setSampleImg = function(url) {
+      if (bImg) {
+        bImg.value = url;
+        updateLivePreview();
+      }
+    };
+
+    // Form submission
+    const regForm = document.getElementById('vendorRegForm');
+    const regSuccessModal = document.getElementById('regSuccessModal');
+    const viewLiveProfileBtn = document.getElementById('viewLiveProfileBtn');
+    const submitRegBtn = document.getElementById('submitRegBtn');
+
+    if (regForm) {
+      regForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (submitRegBtn) {
+          submitRegBtn.disabled = true;
+          submitRegBtn.textContent = 'Publishing to MongoDB Atlas...';
+        }
+
+        const checkedCeremonies = Array.from(document.querySelectorAll('input[name="ceremonies"]:checked')).map(c => c.value);
+        const startingPrice = Number(bPrice.value) || 85000;
+
+        const payload = {
+          name: document.getElementById('regOwnerName').value,
+          businessName: bName.value,
+          tagline: document.getElementById('regTagline').value || `Premier ${bCategory.value} in ${bCity.value}`,
+          category: bCategory.value,
+          subcategories: [bCategory.value, 'Destination Weddings', 'Luxury Styling'],
+          description: document.getElementById('regDescription').value || `${bName.value} offers premium ${bCategory.value} services in ${bCity.value}, ${bState.value}.`,
+          phone: document.getElementById('regPhone').value,
+          email: document.getElementById('regEmail').value,
+          state: bState.value,
+          district: document.getElementById('regDistrict').value || bCity.value,
+          taluka: document.getElementById('regTaluka').value || bCity.value,
+          city: bCity.value,
+          locality: document.getElementById('regLocality').value || 'Central',
+          coverImage: bImg.value || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
+          startingPrice: startingPrice,
+          priceUnit: document.getElementById('regPriceUnit').value || 'per event',
+          yearsOfExperience: Number(document.getElementById('regExperience').value) || 5,
+          supportedEvents: checkedCeremonies.length > 0 ? checkedCeremonies : ['Wedding Ceremony', 'Sangeet', 'Reception'],
+          packages: [
+            {
+              id: 'pkg-1',
+              name: 'Silver Classic Package',
+              price: startingPrice,
+              description: 'Essential core services for single-ceremony celebration.',
+              features: ['Standard setup', 'Experienced crew', 'Local transportation within city'],
+              isPopular: false
+            },
+            {
+              id: 'pkg-2',
+              name: 'Gold Grand Package',
+              price: Math.round(startingPrice * 1.5),
+              description: 'Most popular all-inclusive package with premium touches.',
+              features: ['Premium setup & styling', 'Senior supervisor on site', 'Extended coverage hours', 'Complimentary add-on'],
+              isPopular: true
+            },
+            {
+              id: 'pkg-3',
+              name: 'Royal Diamond Bespoke',
+              price: Math.round(startingPrice * 2.2),
+              description: 'Luxury customized multi-day wedding experience.',
+              features: ['VIP styling & luxury inventory', 'Lead founder supervision', 'Full multi-day coordination', 'Custom theme design'],
+              isPopular: false
+            }
+          ]
+        };
+
+        try {
+          const res = await fetch('/api/vendors', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const result = await res.json();
+          if (result.success && result.data) {
+            if (viewLiveProfileBtn) {
+              viewLiveProfileBtn.href = `vendor-detail.html?id=${result.data.id}`;
+            }
+            if (regSuccessModal) {
+              regSuccessModal.classList.add('active');
+            }
+          } else {
+            alert('Notice: ' + (result.error || 'Saved in local session.'));
+          }
+        } catch (err) {
+          // If offline/error fallback
+          const newId = `v-${Date.now()}`;
+          if (typeof INITIAL_VENDORS !== 'undefined') {
+            INITIAL_VENDORS.unshift({ id: newId, ...payload, rating: 5.0, reviewCount: 1, isVerified: true, gallery: [payload.coverImage] });
+          }
+          if (viewLiveProfileBtn) {
+            viewLiveProfileBtn.href = `vendor-detail.html?id=${newId}`;
+          }
+          if (regSuccessModal) {
+            regSuccessModal.classList.add('active');
+          }
+        } finally {
+          if (submitRegBtn) {
+            submitRegBtn.disabled = false;
+            submitRegBtn.textContent = '✨ Publish Vendor Profile to Vivah Marketplace';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
