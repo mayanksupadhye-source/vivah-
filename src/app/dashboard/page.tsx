@@ -171,37 +171,37 @@ function DashboardContent() {
             </p>
           </div>
 
-          {/* Role Switcher Pill */}
-          <div className="bg-stone-100 p-1.5 rounded-2xl flex items-center gap-1 border border-stone-200/80">
+          {/* Role Switcher Pill (Optimized for Mobile Touch) */}
+          <div className="bg-stone-100 p-1.5 rounded-2xl flex items-center gap-1 border border-stone-200/80 overflow-x-auto max-w-full scrollbar-none">
             <button
               onClick={() => setActiveTab('customer')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex-shrink-0 ${
                 activeTab === 'customer'
                   ? 'bg-rose-800 text-white shadow-sm'
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              Customer Wedding Planner
+              Customer Planner
             </button>
             <button
               onClick={() => setActiveTab('vendor')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex-shrink-0 ${
                 activeTab === 'vendor'
                   ? 'bg-amber-600 text-white shadow-sm'
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              Vendor Partner Portal
+              Vendor Portal
             </button>
             <button
               onClick={() => setActiveTab('admin')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex-shrink-0 ${
                 activeTab === 'admin'
                   ? 'bg-stone-900 text-white shadow-sm'
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              Admin Control Desk
+              Admin Control
             </button>
           </div>
         </div>
