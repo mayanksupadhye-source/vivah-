@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Event Wedding Planner - Vivah Marketplace</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    .wizard-steps-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .w-step-circle {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: var(--stone-200);
+      color: var(--stone-700);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .w-step-circle.active {
+      background: var(--maroon-800);
+      color: #fff;
+      box-shadow: 0 0 0 4px var(--maroon-100);
+    }
+    .w-step-circle.done {
+      background: #059669;
+      color: #fff;
+    }
+    .w-step-line {
+      width: 2rem;
+      height: 2px;
+      background: var(--stone-200);
+    }
+    .event-toggle-card {
+      padding: 1.25rem;
+      border-radius: 1rem;
+      border: 2px solid var(--stone-200);
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .event-toggle-card.selected {
+      border-color: var(--maroon-800);
+      background: var(--maroon-50);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span>✨ India's Dedicated Multi-Vendor Wedding Discovery &amp; Booking Marketplace</span>
+    <span>|</span>
+    <span>📞 Concierge Helpline: +91 1800-VIVAH-CARE</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">वि</div>
+        <div class="brand-text">
+          <h1>Vivah <span>Marketplace</span></h1>
+          <p>Discover • Compare • Negotiate • Book</p>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="planner.html" class="nav-link active">Wedding Planner</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="negotiation.html" class="nav-link">Deal Room</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn-view-profile">
+          My Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-padding" style="padding-top: 2rem;">
+    <div class="container" style="max-width: 900px;">
+      <!-- Header -->
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="section-tag">Multi-Event Architecture</span>
+        <h1 style="font-size: 2.25rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950);">
+          Interactive Wedding Event Builder
+        </h1>
+        <p style="font-size: 0.9rem; color: var(--stone-600); margin-top: 0.25rem;">
+          Configure ceremonies, choose independent services per event, and preview cost distributions.
+        </p>
+
+        <!-- Steps Nav -->
+        <div class="wizard-steps-nav" style="margin-top: 1.5rem;">
+          <div class="w-step-circle active" id="sc1">1</div>
+          <div class="w-step-line"></div>
+          <div class="w-step-circle" id="sc2">2</div>
+          <div class="w-step-line"></div>
+          <div class="w-step-circle" id="sc3">3</div>
+          <div class="w-step-line"></div>
+          <div class="w-step-circle" id="sc4">4</div>
+        </div>
+      </div>
+
+      <!-- STEP 1: DESTINATION & DATES -->
+      <div id="step1Box" style="background: #fff; border-radius: 1.5rem; padding: 2.5rem; border: 1px solid var(--stone-200); box-shadow: var(--shadow-sm);">
+        <h2 style="font-size: 1.5rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-bottom: 1.5rem;">
+          Step 1: Where &amp; When is the Celebration?
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+          <div class="form-group">
+            <label>Wedding Destination City *</label>
+            <select id="plCity">
+              <option value="Udaipur">Udaipur, Rajasthan (Palace &amp; Lake)</option>
+              <option value="Jaipur">Jaipur, Rajasthan (Heritage Haveli)</option>
+              <option value="Mumbai">Mumbai, Maharashtra (Seaside)</option>
+              <option value="New Delhi">New Delhi &amp; NCR (Farmhouses)</option>
+              <option value="Pune">Pune, Maharashtra (Hill Resorts)</option>
+              <option value="Bengaluru">Bengaluru, Karnataka (Garden Lawns)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Start Date *</label>
+            <input type="date" id="plDate" value="2026-12-18">
+          </div>
+
+          <div class="form-group">
+            <label>Wedding Duration</label>
+            <select id="plDays">
+              <option value="1">1 Day (Express Wedding &amp; Reception)</option>
+              <option value="2">2 Days (Sangeet + Wedding)</option>
+              <option value="3" selected>3 Days (Mehendi, Sangeet, Wedding, Reception)</option>
+              <option value="4">4 Days (Royal Grandeur Celebration)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Expected Guest Count</label>
+            <input type="number" id="plGuests" value="400">
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: flex-end;">
+          <button onclick="goToStep(2)" class="btn-submit" style="width: auto; padding: 0.75rem 2rem;">
+            Continue to Functions &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: SELECT FUNCTIONS -->
+      <div id="step2Box" style="display: none; background: #fff; border-radius: 1.5rem; padding: 2.5rem; border: 1px solid var(--stone-200); box-shadow: var(--shadow-sm);">
+        <h2 style="font-size: 1.5rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-bottom: 0.5rem;">
+          Step 2: Select Which Functions You Are Hosting
+        </h2>
+        <p style="font-size: 0.8rem; color: var(--stone-500); margin-bottom: 1.5rem;">Toggle the ceremonies included in your wedding itinerary</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;" id="functionToggleGrid">
+          <!-- Populated by JS -->
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+          <button onclick="goToStep(1)" class="btn-view-profile" style="cursor: pointer;">&larr; Back</button>
+          <button onclick="goToStep(3)" class="btn-submit" style="width: auto; padding: 0.75rem 2rem;">Customize Services Per Ceremony &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: ASSIGN SERVICES PER CEREMONY -->
+      <div id="step3Box" style="display: none; background: #fff; border-radius: 1.5rem; padding: 2.5rem; border: 1px solid var(--stone-200); box-shadow: var(--shadow-sm);">
+        <h2 style="font-size: 1.5rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-bottom: 0.5rem;">
+          Step 3: Assign Independent Services to Each Ceremony
+        </h2>
+        <p style="font-size: 0.8rem; color: var(--stone-500); margin-bottom: 1.5rem;">Check or uncheck the specific vendors required for each function</p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;" id="servicesPerEventContainer">
+          <!-- Populated by JS -->
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+          <button onclick="goToStep(2)" class="btn-view-profile" style="cursor: pointer;">&larr; Back</button>
+          <button onclick="goToStep(4)" class="btn-submit" style="width: auto; padding: 0.75rem 2rem;">Calculate Total &amp; Match Vendors &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: BLUEPRINT & MATCHING VENDORS -->
+      <div id="step4Box" style="display: none;">
+        <!-- Grand Summary Box -->
+        <div class="calculator-box" style="margin-bottom: 2rem;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: var(--gold-300);">Wedding Itinerary Benchmark</span>
+          <h2 style="font-size: 2rem; font-family: var(--font-serif); font-weight: 900; margin: 0.5rem 0;" id="bpCityTitle">Udaipur Royal Wedding Blueprint</h2>
+          <p style="font-size: 0.85rem; color: var(--maroon-100);" id="bpDetailsSubtitle">3 Days &bull; 400 Guests</p>
+
+          <div style="background: rgba(255, 255, 255, 0.1); border-radius: 1.25rem; padding: 1.5rem; border: 1px solid rgba(245, 158, 11, 0.3); margin: 1.5rem 0;">
+            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--gold-200); font-weight: 700;">Total Estimated Investment</span>
+            <div style="font-size: 2.75rem; font-family: var(--font-serif); font-weight: 900; color: #fff;" id="bpGrandTotal">₹24,80,000</div>
+            <p style="font-size: 0.75rem; color: var(--gold-200);">Calculated based on local market averages with zero broker markup.</p>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button onclick="window.print()" class="btn-view-profile" style="background: rgba(255, 255, 255, 0.2); color: #fff; border-color: rgba(255, 255, 255, 0.4); cursor: pointer;">
+              🖨️ Print Itinerary
+            </button>
+            <a href="dashboard.html" class="search-btn" style="text-decoration: none; padding: 0.65rem 1.25rem; font-size: 0.85rem;">
+              Save to My Dashboard
+            </a>
+          </div>
+        </div>
+
+        <div style="background: #fff; border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--stone-200); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+          <h3 style="font-size: 1.35rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-bottom: 1rem;">Recommended Verified Specialists for Your Itinerary</h3>
+          <div class="vendor-grid" id="plannerMatchedVendors">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <button onclick="goToStep(3)" class="btn-view-profile" style="cursor: pointer;">&larr; Back to Edit Services</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <div>&copy; 2026 Vivah Wedding Services Marketplace Ltd. &bull; Made with ❤️ for Indian Weddings</div>
+      <div>🛡️ Direct Vendor Phone Storage in MongoDB Atlas</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let eventsList = [
+      { name: 'Engagement', selected: true, services: ['Decoration & Setup', 'Photography & Media', 'Food & Catering'] },
+      { name: 'Haldi', selected: true, services: ['Decoration & Setup', 'Beauty & Personal Care', 'Photography & Media'] },
+      { name: 'Mehendi', selected: true, services: ['Beauty & Personal Care', 'Photography & Media', 'Food & Catering'] },
+      { name: 'Sangeet', selected: true, services: ['Entertainment & Music', 'Decoration & Setup', 'Photography & Media', 'Food & Catering'] },
+      { name: 'Wedding Ceremony', selected: true, services: ['Decoration & Setup', 'Food & Catering', 'Photography & Media', 'Rituals & Ceremonies', 'Wedding Logistics'] },
+      { name: 'Reception', selected: true, services: ['Food & Catering', 'Decoration & Setup', 'Photography & Media', 'Entertainment & Music'] }
+    ];
+
+    const availableServices = [
+      'Decoration & Setup',
+      'Photography & Media',
+      'Food & Catering',
+      'Beauty & Personal Care',
+      'Entertainment & Music',
+      'Rituals & Ceremonies',
+      'Wedding Logistics',
+      'Invitations & Gifts'
+    ];
+
+    function goToStep(s) {
+      document.getElementById('step1Box').style.display = s === 1 ? 'block' : 'none';
+      document.getElementById('step2Box').style.display = s === 2 ? 'block' : 'none';
+      document.getElementById('step3Box').style.display = s === 3 ? 'block' : 'none';
+      document.getElementById('step4Box').style.display = s === 4 ? 'block' : 'none';
+
+      for (let i = 1; i <= 4; i++) {
+        const circle = document.getElementById(`sc${i}`);
+        if (i === s) circle.className = 'w-step-circle active';
+        else if (i < s) circle.className = 'w-step-circle done';
+        else circle.className = 'w-step-circle';
+      }
+
+      if (s === 2) renderStep2();
+      if (s === 3) renderStep3();
+      if (s === 4) renderStep4();
+    }
+
+    function renderStep2() {
+      const grid = document.getElementById('functionToggleGrid');
+      grid.innerHTML = eventsList.map((e, idx) => `
+        <div class="event-toggle-card ${e.selected ? 'selected' : ''}" onclick="toggleEventSelection(${idx})">
+          <div>
+            <strong style="font-size: 1rem; color: var(--stone-900);">${e.name}</strong>
+            <span style="font-size: 0.75rem; color: var(--stone-500); display: block;">${e.services.length} services assigned</span>
+          </div>
+          <span style="font-size: 1.25rem; font-weight: 900; color: ${e.selected ? 'var(--maroon-800)' : 'var(--stone-400)'};">${e.selected ? '✓' : '+'}</span>
+        </div>
+      `).join('');
+    }
+
+    window.toggleEventSelection = function(idx) {
+      eventsList[idx].selected = !eventsList[idx].selected;
+      renderStep2();
+    };
+
+    function renderStep3() {
+      const container = document.getElementById('servicesPerEventContainer');
+      const selected = eventsList.filter(e => e.selected);
+      container.innerHTML = selected.map(ev => `
+        <div style="background: var(--stone-50); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--stone-200);">
+          <h4 style="font-size: 1.15rem; font-family: var(--font-serif); font-weight: 800; color: var(--maroon-950); margin-bottom: 0.75rem;">${ev.name}</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem;">
+            ${availableServices.map(srv => {
+              const isIncluded = ev.services.includes(srv);
+              return `
+                <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: ${isIncluded ? '#fff' : 'transparent'}; border: 1px solid ${isIncluded ? 'var(--gold-400)' : 'var(--stone-200)'}; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600; cursor: pointer;">
+                  <input type="checkbox" ${isIncluded ? 'checked' : ''} onchange="toggleService('${ev.name}', '${srv}')" style="accent-color: var(--maroon-800);">
+                  <span>${srv.split(' ')[0]}</span>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.toggleService = function(evName, srv) {
+      const ev = eventsList.find(e => e.name === evName);
+      if (!ev) return;
+      if (ev.services.includes(srv)) {
+        ev.services = ev.services.filter(s => s !== srv);
+      } else {
+        ev.services.push(srv);
+      }
+    };
+
+    function renderStep4() {
+      const city = document.getElementById('plCity').value;
+      const days = document.getElementById('plDays').value;
+      const guests = Number(document.getElementById('plGuests').value) || 400;
+
+      document.getElementById('bpCityTitle').textContent = `${city} Royal Wedding Blueprint`;
+      document.getElementById('bpDetailsSubtitle').textContent = `${days} Days Duration &bull; ${guests} Peak Guests &bull; ${eventsList.filter(e => e.selected).length} Ceremonies`;
+
+      // Calculate estimate
+      let grandTotal = 0;
+      eventsList.filter(e => e.selected).forEach(ev => {
+        ev.services.forEach(s => {
+          if (s === 'Food & Catering') grandTotal += guests * 1450;
+          else if (s === 'Decoration & Setup') grandTotal += 160000;
+          else if (s === 'Photography & Media') grandTotal += 90000;
+          else if (s === 'Entertainment & Music') grandTotal += 50000;
+          else if (s === 'Beauty & Personal Care') grandTotal += 35000;
+          else grandTotal += 25000;
+        });
+      });
+
+      document.getElementById('bpGrandTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+
+      // Matched vendors
+      const matched = (typeof INITIAL_VENDORS !== 'undefined' ? INITIAL_VENDORS : []).slice(0, 3);
+      document.getElementById('plannerMatchedVendors').innerHTML = matched.map(v => `
+        <div class="vendor-card">
+          <div class="vendor-cover-wrap" style="height: 180px;">
+            <img src="${v.coverImage}" alt="${v.businessName}">
+            <div class="verified-pill">🛡️ Matched</div>
+          </div>
+          <div class="vendor-body">
+            <div>
+              <span class="vendor-category-tag">${v.category}</span>
+              <h4 class="vendor-name">${v.businessName}</h4>
+            </div>
+            <div class="vendor-footer">
+              <span class="vendor-price-val" style="font-size: 1rem;">₹${v.startingPrice.toLocaleString('en-IN')}</span>
+              <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile">View Details</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivah - India’s Premier Multi-Vendor Wedding Services Marketplace</title>
+  <meta name="description" content="Discover, compare, negotiate and book verified wedding decorators, caterers, photographers, bridal makeup artists, DJs, and pandits for your dream wedding across India.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span>✨ India's Dedicated Multi-Vendor Wedding Discovery &amp; Booking Marketplace</span>
+    <span>|</span>
+    <span>📞 Concierge Hotline: +91 1800-VIVAH-CARE</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">वि</div>
+        <div class="brand-text">
+          <h1>Vivah <span>Marketplace</span></h1>
+          <p>Discover • Compare • Negotiate • Book</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="planner.html" class="nav-link">Wedding Planner</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="negotiation.html" class="nav-link">Deal Room</a>
+      </nav>
+
+      <!-- Desktop CTA & Mobile Hamburger -->
+      <div class="nav-actions">
+        <a href="planner.html" class="btn-planner-cta">
+          <span>📅 Plan Wedding</span>
+        </a>
+        <a href="dashboard.html?role=vendor" class="btn-view-profile" style="display: inline-block;">
+          Vendor Portal
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="mobile-nav-link active">Home</a>
+      <a href="vendors.html" class="mobile-nav-link">Explore 1,500+ Vendors</a>
+      <a href="planner.html" class="mobile-nav-link">Multi-Event Wedding Planner</a>
+      <a href="dashboard.html" class="mobile-nav-link">Operations Dashboard</a>
+      <a href="negotiation.html" class="mobile-nav-link">Deal Room &amp; Negotiations</a>
+      <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+        <a href="planner.html" class="btn-submit" style="text-align: center; text-decoration: none;">Plan Your Wedding Events</a>
+        <a href="dashboard.html?role=vendor" class="btn-view-profile" style="text-align: center; text-decoration: none;">Vendor Partner Login</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-ambient-glow"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="pill-badge">
+        <span>✨ Discover • Compare • Negotiate • Celebrate</span>
+      </div>
+
+      <h2 class="hero-title">
+        Plan Your Sacred Celebration Without the Stress of Multiple Planners
+      </h2>
+
+      <p class="hero-subtitle">
+        Connect directly with verified palace mandap decorators, multi-cuisine caterers, candid cinematographers, and bridal artists. No agency markups.
+      </p>
+
+      <!-- MAIN MULTI-DAY SEARCH CONSOLE -->
+      <div class="search-console">
+        <form action="vendors.html" method="GET">
+          <div class="search-grid">
+            <div class="search-field">
+              <label>📍 Wedding Location</label>
+              <select name="city">
+                <option value="All">All Regions (India)</option>
+                <option value="Udaipur">Udaipur, Rajasthan</option>
+                <option value="Jaipur">Jaipur, Rajasthan</option>
+                <option value="Mumbai">Mumbai, Maharashtra</option>
+                <option value="New Delhi">New Delhi &amp; NCR</option>
+                <option value="Pune">Pune, Maharashtra</option>
+                <option value="Bengaluru">Bengaluru, Karnataka</option>
+                <option value="Ahmedabad">Ahmedabad, Gujarat</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label>💍 Wedding Ceremony</label>
+              <select name="event">
+                <option value="All">All Ceremonies</option>
+                <option value="Wedding Ceremony" selected>Wedding Ceremony (Pheras)</option>
+                <option value="Sangeet">Sangeet &amp; DJ Night</option>
+                <option value="Mehendi">Mehendi Ceremony</option>
+                <option value="Haldi">Haldi Celebration</option>
+                <option value="Engagement">Engagement Ring Ceremony</option>
+                <option value="Reception">Grand Reception</option>
+              </select>
+            </div>
+
+            <div class="search-field">
+              <label>✨ Service Category</label>
+              <select name="category">
+                <option value="All">All Wedding Services</option>
+                <option value="Decoration & Setup">Decoration &amp; Mandaps</option>
+                <option value="Photography & Media">Photography &amp; Drones</option>
+                <option value="Food & Catering">Royal Food &amp; Catering</option>
+                <option value="Beauty & Personal Care">Bridal Makeup &amp; Mehendi</option>
+                <option value="Entertainment & Music">Sangeet DJs &amp; Live Dhol</option>
+                <option value="Rituals & Ceremonies">Vedic Pandits &amp; Samagri</option>
+                <option value="Wedding Logistics">Vintage Cars &amp; Coaches</option>
+                <option value="Invitations & Gifts">Luxury Box Invites &amp; Hampers</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-action-bar">
+            <div class="search-trust-pill">
+              <span>🛡️ 100% Verified Profiles</span>
+              <span>&bull;</span>
+              <span>📞 Direct WhatsApp &amp; Phone Inquiries</span>
+            </div>
+            <button type="submit" class="search-btn">
+              🔍 Search Local Vendors
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-number">1,500+</span>
+          <span class="stat-label">Verified Providers</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">₹0</span>
+          <span class="stat-label">Middleman Fees</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">4.92 ★</span>
+          <span class="stat-label">Average Rating</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">28+</span>
+          <span class="stat-label">Cities &amp; Talukas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 CORE WEDDING SERVICE CATEGORIES -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Full Category Coverage</span>
+        <h2 class="section-title">Every Wedding Service in One Marketplace</h2>
+        <p class="section-desc">From sacred Saptapadi mantras to grand royal palace mandaps, find authentic craftsmen for every ritual.</p>
+      </div>
+
+      <div class="category-grid">
+        <a href="vendors.html?category=Decoration+%26+Setup" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Decoration">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">340+ Vendors</span>
+            <span class="category-img-title">Decoration &amp; Setup</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">Mandaps, floral arches, entrance pathways &amp; ambient palace lighting.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Photography+%26+Media" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Photography">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">280+ Studios</span>
+            <span class="category-img-title">Photography &amp; Media</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">Candid wedding stories, 4K cinematic teasers, aerial drone &amp; pre-weddings.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Food+%26+Catering" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80" alt="Catering">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">190+ Caterers</span>
+            <span class="category-img-title">Food &amp; Catering</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">Royal Awadhi, Marwari, South Indian feasts, live chaat &amp; artisan dessert bars.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Beauty+%26+Personal+Care" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Beauty">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">420+ Artists</span>
+            <span class="category-img-title">Beauty &amp; Personal Care</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">HD Airbrush bridal glam, organic Sojat mehendi &amp; celebrity styling.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Entertainment+%26+Music" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80" alt="Music">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">160+ Troupes</span>
+            <span class="category-img-title">Entertainment &amp; DJs</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">High-octane Sangeet DJs, live Punjabi Dhol, Sufi bands &amp; interactive emcees.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Rituals+%26+Ceremonies" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" alt="Rituals">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">95+ Acharyas</span>
+            <span class="category-img-title">Rituals &amp; Ceremonies</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">Vedic pandits, authenticated havan samagri &amp; bilingual vow ceremonies.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Wedding+Logistics" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Logistics">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">80+ Providers</span>
+            <span class="category-img-title">Wedding Logistics</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">Vintage Baraat convertibles, luxury coaches, AC tents &amp; valet management.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+
+        <a href="vendors.html?category=Invitations+%26+Gifts" class="category-card">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" alt="Invitations">
+            <div class="category-img-overlay"></div>
+            <span class="category-badge-count">120+ Designers</span>
+            <span class="category-img-title">Invitations &amp; Gifts</span>
+          </div>
+          <div class="category-info">
+            <p class="category-desc">Velvet laser-cut invitation boxes, video invites &amp; handcrafted trousseau.</p>
+            <span class="category-explore-link">Explore Specialists &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE LIVE WEDDING BUDGET ESTIMATOR -->
+  <section style="padding: 2rem 0 5rem;">
+    <div class="container">
+      <div class="calculator-box">
+        <div class="calc-grid">
+          <div>
+            <div class="pill-badge" style="background: rgba(245, 158, 11, 0.2); border-color: var(--gold-300);">
+              <span>💰 Instant Smart Budget Estimator</span>
+            </div>
+            <h2 style="font-size: 2rem; font-family: var(--font-serif); font-weight: 900; line-height: 1.25; margin-bottom: 1rem;">
+              Calculate Your Multi-Day Wedding Investment in Seconds
+            </h2>
+            <p style="font-size: 0.9rem; color: var(--maroon-100); line-height: 1.6; margin-bottom: 2rem;">
+              Adjust guest count, celebration duration, and desired wedding services to preview realistic market quotations from verified local vendors.
+            </p>
+
+            <!-- Slider 1: Guests -->
+            <div class="calc-range-group">
+              <div class="calc-range-header">
+                <span>👥 Expected Guests:</span>
+                <span id="guestsVal">350 People</span>
+              </div>
+              <input type="range" id="calcGuests" min="50" max="1500" step="50" value="350">
+            </div>
+
+            <!-- Slider 2: Days -->
+            <div class="calc-range-group">
+              <div class="calc-range-header">
+                <span>📅 Wedding Duration:</span>
+                <span id="daysVal">2 Days</span>
+              </div>
+              <input type="range" id="calcDays" min="1" max="5" step="1" value="2">
+            </div>
+
+            <!-- Service Checkboxes -->
+            <div class="calc-checkboxes">
+              <label class="checkbox-pill">
+                <input type="checkbox" id="checkCatering" checked>
+                <span>Royal Catering Buffet</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" id="checkDecor" checked>
+                <span>Mandap &amp; Floral Decor</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" id="checkPhoto" checked>
+                <span>4K Photo &amp; Drone</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" id="checkDJ" checked>
+                <span>Sangeet DJ &amp; Sound</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Result Card -->
+          <div class="calc-result-card">
+            <span class="calc-result-label">Estimated Wedding Investment</span>
+            <div class="calc-result-total" id="calcTotalVal">₹14,75,000</div>
+            <p style="font-size: 0.75rem; color: var(--gold-200);">Based on direct local vendor averages without broker commissions.</p>
+
+            <div class="calc-breakdown-list">
+              <div class="calc-breakdown-item">
+                <span>Catering &amp; Live Counters:</span>
+                <strong id="caterSub" style="color: var(--gold-300);">₹9,24,000</strong>
+              </div>
+              <div class="calc-breakdown-item">
+                <span>Floral Mandap &amp; Lighting:</span>
+                <strong id="decorSub" style="color: var(--gold-300);">₹3,50,000</strong>
+              </div>
+              <div class="calc-breakdown-item">
+                <span>Photography &amp; Cinema:</span>
+                <strong id="photoSub" style="color: var(--gold-300);">₹1,90,000</strong>
+              </div>
+              <div class="calc-breakdown-item">
+                <span>Sangeet DJ Sound Console:</span>
+                <strong id="djSub" style="color: var(--gold-300);">₹50,000</strong>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+              <a href="planner.html" class="search-btn" style="flex: 1; padding: 0.75rem 1rem; font-size: 0.8rem;">
+                Customize in Planner
+              </a>
+              <a href="vendors.html" class="btn-view-profile" style="flex: 1; text-align: center; padding: 0.75rem 1rem; font-size: 0.8rem; background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);">
+                Browse Vendors
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED VERIFIED VENDORS -->
+  <section class="section-padding" style="background: #faf7f5; border-top: 1px solid var(--stone-200); border-bottom: 1px solid var(--stone-200);">
+    <div class="container">
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-content: space-between; margin-bottom: 3rem;">
+        <div>
+          <span class="section-tag">Handpicked Masters</span>
+          <h2 class="section-title">Trending Verified Wedding Specialists</h2>
+        </div>
+        <a href="vendors.html" style="color: var(--maroon-800); font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+          View All 1,500+ Vendors &rarr;
+        </a>
+      </div>
+
+      <div class="vendor-grid" id="featuredVendorGrid">
+        <!-- Rendered via public/js/data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-STEP BLUEPRINT -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Simple 4-Step Process</span>
+        <h2 class="section-title">How Vivah Simplifies Wedding Planning</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Specify Location &amp; Dates</h3>
+          <p class="step-desc">Enter your wedding state, district, taluka, and dates to activate smart radius-based discovery.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Configure Functions</h3>
+          <p class="step-desc">Add Haldi, Mehendi, Sangeet, Pheras, and Reception with customized services for each day.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Compare Quotes &amp; Reviews</h3>
+          <p class="step-desc">Inspect high-resolution portfolios, genuine client feedback, and transparent itemized deliverables.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h3 class="step-title">Negotiate &amp; Book Direct</h3>
+          <p class="step-desc">Submit phone inquiries, counter-offer in the Deal Room, and connect on WhatsApp with zero fees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="logo-badge">वि</div>
+            <div class="brand-text">
+              <h1 style="color: #fff;">Vivah <span style="background: rgba(245,158,11,0.2); color: var(--gold-300);">Marketplace</span></h1>
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--stone-400); line-height: 1.6; max-width: 320px;">
+            Discover. Compare. Connect. Celebrate. India's centralized multi-vendor wedding marketplace connecting families directly with local service providers.
+          </p>
+          <p style="font-size: 0.75rem; color: var(--stone-400); margin-top: 1rem;">
+            📞 Concierge Helpline: +91 1800-VIVAH-CARE<br>
+            📍 Hubs: Udaipur • Jaipur • Mumbai • Delhi NCR
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Service Categories</h4>
+          <ul>
+            <li><a href="vendors.html?category=Decoration+%26+Setup">Mandaps &amp; Decor</a></li>
+            <li><a href="vendors.html?category=Photography+%26+Media">Photography &amp; Drones</a></li>
+            <li><a href="vendors.html?category=Food+%26+Catering">Catering &amp; Live Stations</a></li>
+            <li><a href="vendors.html?category=Beauty+%26+Personal+Care">Bridal Makeup &amp; Mehendi</a></li>
+            <li><a href="vendors.html?category=Entertainment+%26+Music">Sangeet DJs &amp; Bands</a></li>
+            <li><a href="vendors.html?category=Rituals+%26+Ceremonies">Vedic Pandits</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Top Destinations</h4>
+          <ul>
+            <li><a href="vendors.html?city=Udaipur">Udaipur Palace Weddings</a></li>
+            <li><a href="vendors.html?city=Jaipur">Jaipur Heritage Haveli</a></li>
+            <li><a href="vendors.html?city=Mumbai">Mumbai Beachfront</a></li>
+            <li><a href="vendors.html?city=New+Delhi">Delhi NCR Farmhouses</a></li>
+            <li><a href="vendors.html?city=Pune">Pune Hill Resorts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform Tools</h4>
+          <ul>
+            <li><a href="planner.html">Event-by-Event Planner</a></li>
+            <li><a href="dashboard.html">Budget &amp; Booking Tracker</a></li>
+            <li><a href="negotiation.html">Deal Room Negotiation</a></li>
+            <li><a href="dashboard.html?role=vendor">Vendor Partner Portal</a></li>
+            <li><a href="dashboard.html?role=admin">Admin Verification Desk</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Vivah Wedding Services Marketplace Ltd. &bull; Made with ❤️ for Indian Weddings</div>
+        <div>🛡️ 100% Verified Providers &bull; Direct Phone Booking</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- QUICK ENQUIRY MODAL (CAPTURES PHONE NUMBER INTO MONGODB) -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="closeEnquiryModal">&times;</button>
+      
+      <div id="enquirySuccessMsg" style="display: none;"></div>
+
+      <form id="enquiryForm">
+        <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--maroon-700); letter-spacing: 0.05em;">Direct Booking Inquiry</span>
+        <h3 id="modalVendorTitle" style="font-size: 1.4rem; font-family: var(--font-serif); font-weight: 900; margin-bottom: 1rem; color: var(--stone-900);">Contact Vendor</h3>
+
+        <input type="hidden" id="modalVendorId">
+        <input type="hidden" id="modalVendorName">
+        <input type="hidden" id="modalVendorCategory">
+
+        <div class="form-group">
+          <label>Your Full Name *</label>
+          <input type="text" id="custName" required placeholder="e.g. Aarav Sharma">
+        </div>
+
+        <div class="form-group">
+          <label>Your Phone Number (Recorded in MongoDB Atlas) *</label>
+          <input type="tel" id="custPhone" required placeholder="+91 98765 43210">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Ceremony</label>
+            <select id="custEvent">
+              <option value="Wedding Ceremony">Wedding Ceremony</option>
+              <option value="Sangeet">Sangeet</option>
+              <option value="Mehendi">Mehendi</option>
+              <option value="Haldi">Haldi</option>
+              <option value="Reception">Reception</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Date *</label>
+            <input type="date" id="custDate" required value="2026-12-18">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Target Budget (₹)</label>
+          <input type="number" id="custBudget" placeholder="150000" value="150000">
+        </div>
+
+        <div class="form-group">
+          <label>Special Requirements / Notes</label>
+          <textarea id="custNotes" rows="2" placeholder="e.g. Lotus mandap theme, lake view venue..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" style="margin-top: 0.5rem;">
+          Send Booking Enquiry
+        </button>
+        <p style="font-size: 0.7rem; color: var(--stone-400); text-align: center; margin-top: 0.5rem;">
+          🔒 Stored securely in Vivah MongoDB database. No spam guaranteed.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Populate Featured Vendors on Landing Page
+    const grid = document.getElementById('featuredVendorGrid');
+    if (grid && typeof INITIAL_VENDORS !== 'undefined') {
+      grid.innerHTML = INITIAL_VENDORS.slice(0, 6).map(v => `
+        <div class="vendor-card">
+          <div class="vendor-cover-wrap">
+            <img src="${v.coverImage}" alt="${v.businessName}">
+            <div class="verified-pill">🛡️ Verified</div>
+            <div class="vendor-loc-badge">📍 ${v.city}, ${v.state}</div>
+            <div class="vendor-rating-badge">★ ${v.rating.toFixed(1)} (${v.reviewCount})</div>
+          </div>
+          <div class="vendor-body">
+            <div>
+              <span class="vendor-category-tag">${v.category}</span>
+              <h3 class="vendor-name">${v.businessName}</h3>
+              <p class="vendor-tagline">"${v.tagline}"</p>
+              <div class="vendor-tags">
+                ${v.subcategories.slice(0, 3).map(sub => `<span class="tag-chip">${sub}</span>`).join('')}
+              </div>
+            </div>
+            <div class="vendor-footer">
+              <div class="vendor-price">
+                <span class="vendor-price-label">Starts from</span>
+                <span class="vendor-price-val">₹${v.startingPrice.toLocaleString('en-IN')}</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button onclick="openEnquiry('${v.id}')" class="btn-view-profile" style="background: #fef3c7; color: #78350f; border-color: #fde68a; cursor: pointer;">
+                  📞 Inquire
+                </button>
+                <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile">
+                  View Profile
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

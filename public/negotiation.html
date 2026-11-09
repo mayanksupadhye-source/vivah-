@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Room &amp; Negotiation - Vivah Marketplace</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <style>
+    .chat-container {
+      background: #fff;
+      border-radius: 1.5rem;
+      border: 1px solid var(--stone-200);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      height: 580px;
+    }
+    .chat-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--stone-100);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .msg-bubble {
+      max-width: 80%;
+      padding: 0.85rem 1.15rem;
+      border-radius: 1rem;
+      font-size: 0.825rem;
+      line-height: 1.5;
+    }
+    .msg-customer {
+      align-self: flex-end;
+      background: var(--maroon-800);
+      color: #fff;
+      border-top-right-radius: 0.25rem;
+    }
+    .msg-vendor {
+      align-self: flex-start;
+      background: var(--stone-100);
+      color: var(--stone-800);
+      border: 1px solid var(--stone-200);
+      border-top-left-radius: 0.25rem;
+    }
+    .quote-box-inline {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+    }
+    .chat-input-bar {
+      padding: 1rem;
+      border-top: 1px solid var(--stone-100);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span>✨ India's Dedicated Multi-Vendor Wedding Discovery &amp; Booking Marketplace</span>
+    <span>|</span>
+    <span>📞 Concierge Helpline: +91 1800-VIVAH-CARE</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">वि</div>
+        <div class="brand-text">
+          <h1>Vivah <span>Marketplace</span></h1>
+          <p>Discover • Compare • Negotiate • Book</p>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vendors.html" class="nav-link">Explore Vendors</a>
+        <a href="planner.html" class="nav-link">Wedding Planner</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="negotiation.html" class="nav-link active">Deal Room</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn-view-profile">
+          Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section-padding" style="padding-top: 2rem;">
+    <div class="container">
+      <div style="margin-bottom: 2rem;">
+        <span class="section-tag">Direct Quotation Negotiation</span>
+        <h1 style="font-size: 2.25rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950);">
+          Customer &amp; Vendor Deal Room
+        </h1>
+        <p style="font-size: 0.85rem; color: var(--stone-600); margin-top: 0.25rem;">
+          Negotiate package deliverables, adjust decor elements, agree on custom pricing, and secure booking with price-lock assurance.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+        <!-- CHAT STREAM -->
+        <div class="chat-container">
+          <div class="chat-header">
+            <div>
+              <strong style="color: var(--stone-900); font-size: 1.1rem; display: block;">Rajesh Sharma (Royal Marwar Decorators)</strong>
+              <span style="font-size: 0.75rem; color: #059669; font-weight: 700;">● Online &bull; Udaipur Mandap &amp; Palace Decor</span>
+            </div>
+            <a href="tel:+919829014523" class="btn-view-profile" style="padding: 0.4rem 0.85rem; font-size: 0.75rem;">
+              📞 Call Vendor
+            </a>
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg-bubble msg-customer">
+              Namaste Rajesh ji! We loved your Royal Heritage Gold Mandap package for our lakeside wedding at Fateh Garh, Udaipur on Dec 18. Could we customize the floral backdrop to include more white Mogra and marigolds?
+              <div style="font-size: 0.65rem; opacity: 0.8; margin-top: 0.25rem;">10:30 AM</div>
+            </div>
+
+            <div class="msg-bubble msg-vendor">
+              Pranam Aarav ji! Yes, we can certainly do a high-density fresh Mogra canopy with brass urlis. Our standard quotation for this setup with the revolving Varmala stage is ₹2,75,000.
+              <div class="quote-box-inline" style="border-color: rgba(0,0,0,0.1); color: var(--maroon-800);">
+                <span>Vendor Quoted:</span>
+                <span>₹2,75,000</span>
+              </div>
+              <div style="font-size: 0.65rem; color: var(--stone-400); margin-top: 0.25rem;">10:45 AM</div>
+            </div>
+
+            <div class="msg-bubble msg-customer">
+              Our target decor budget for this function is ₹2,40,000. If we confirm advance payment today via Vivah, could you adjust the quotation to ₹2,45,000?
+              <div class="quote-box-inline">
+                <span>Proposed Counter:</span>
+                <span style="color: var(--gold-300);">₹2,45,000</span>
+              </div>
+              <div style="font-size: 0.65rem; opacity: 0.8; margin-top: 0.25rem;">11:15 AM</div>
+            </div>
+
+            <div class="msg-bubble msg-vendor">
+              We respect your family celebration and want to make it memorable. We can agree to ₹2,48,000 if we include the Cold Spark Pyros as a complimentary blessing for the Varmala entry!
+              <div class="quote-box-inline" style="border-color: rgba(0,0,0,0.1); color: var(--maroon-800);">
+                <span>Revised Final Offer:</span>
+                <span>₹2,48,000</span>
+              </div>
+              <div style="font-size: 0.65rem; color: var(--stone-400); margin-top: 0.25rem;">11:30 AM</div>
+            </div>
+          </div>
+
+          <div id="dealLockedBanner" style="display: none; padding: 1rem; background: #ecfdf5; border-top: 2px solid #059669; text-align: center; color: #065f46; font-weight: 800; font-size: 0.85rem;">
+            🎉 Deal Locked &amp; Booking Confirmed at ₹2,48,000! Contract Generated.
+          </div>
+
+          <form id="chatForm" class="chat-input-bar">
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="chatInputText" placeholder="Type message or package modification request..." style="flex: 1; padding: 0.65rem 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; font-size: 0.825rem; outline: none;">
+              <button type="submit" class="btn-submit" style="width: auto; padding: 0.65rem 1.25rem; font-size: 0.825rem;">Send</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem;">
+              <span style="font-weight: 700; color: var(--stone-600);">Propose Counter-Offer:</span>
+              <input type="number" id="counterPriceInput" placeholder="240000" style="width: 110px; padding: 0.35rem 0.5rem; border: 1px solid var(--stone-200); border-radius: 0.5rem; font-size: 0.75rem;">
+              <button type="button" onclick="sendCounterOffer()" class="btn-view-profile" style="background: var(--gold-300); color: var(--stone-900); border-color: var(--gold-400); font-weight: 800; padding: 0.35rem 0.75rem; font-size: 0.75rem; cursor: pointer;">
+                Submit Counter
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- RIGHT: SUMMARY & LOCK WIDGET -->
+        <div style="background: #fff; border-radius: 1.5rem; padding: 2rem; border: 2px solid var(--gold-400); box-shadow: var(--shadow-sm);">
+          <span class="section-tag">Agreed Terms Summary</span>
+          <h3 style="font-size: 1.35rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950); margin-bottom: 1rem;">
+            Customized Mandap Setup
+          </h3>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.825rem; border-bottom: 1px solid var(--stone-100); padding-bottom: 1rem; margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--stone-500);">Original Package Price:</span>
+              <span style="text-decoration: line-through; color: var(--stone-400);">₹2,75,000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: 800;">
+              <span style="color: var(--stone-800);">Negotiated Rate:</span>
+              <span style="color: var(--maroon-800); font-size: 1.15rem;" id="negotiatedPriceBadge">₹2,48,000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: #059669; font-weight: 700;">
+              <span>Total Family Savings:</span>
+              <span>-₹27,000 (10% Discount)</span>
+            </div>
+          </div>
+
+          <div style="font-size: 0.8rem; color: var(--stone-600); line-height: 1.6; margin-bottom: 1.5rem;">
+            <strong style="color: var(--stone-900); display: block; margin-bottom: 0.35rem;">Included Enhancements:</strong>
+            &bull; High-density fresh White Mogra &amp; Marigold canopy<br>
+            &bull; Complimentary Cold Spark Pyros on Varmala<br>
+            &bull; 4-Pillar Carved Wooden Mandap setup
+          </div>
+
+          <button id="lockDealBtn" onclick="lockDeal()" class="btn-submit" style="background: linear-gradient(135deg, #059669, #047857); padding: 0.85rem; font-size: 0.85rem;">
+            🔒 Lock Deal &amp; Confirm Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <div>&copy; 2026 Vivah Wedding Services Marketplace Ltd. &bull; Made with ❤️ for Indian Weddings</div>
+      <div>🛡️ Direct Vendor Phone Storage in MongoDB Atlas</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const chatInputText = document.getElementById('chatInputText');
+    const counterPriceInput = document.getElementById('counterPriceInput');
+    const dealLockedBanner = document.getElementById('dealLockedBanner');
+    const lockDealBtn = document.getElementById('lockDealBtn');
+    const negotiatedPriceBadge = document.getElementById('negotiatedPriceBadge');
+
+    let currentPrice = 248000;
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const txt = chatInputText.value.trim();
+      if (!txt) return;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble msg-customer';
+      bubble.innerHTML = `${txt}<div style="font-size: 0.65rem; opacity: 0.8; margin-top: 0.25rem;">Just now</div>`;
+      chatMessages.appendChild(bubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      chatInputText.value = '';
+    });
+
+    window.sendCounterOffer = function() {
+      const p = counterPriceInput.value.trim();
+      if (!p) return;
+      currentPrice = Number(p);
+      negotiatedPriceBadge.textContent = `₹${currentPrice.toLocaleString('en-IN')}`;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble msg-customer';
+      bubble.innerHTML = `Proposed counter-offer of ₹${currentPrice.toLocaleString('en-IN')} for complete mandap setup.<div class="quote-box-inline"><span>Proposed Counter:</span><span style="color: var(--gold-300);">₹${currentPrice.toLocaleString('en-IN')}</span></div><div style="font-size: 0.65rem; opacity: 0.8; margin-top: 0.25rem;">Just now</div>`;
+      chatMessages.appendChild(bubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      counterPriceInput.value = '';
+    };
+
+    window.lockDeal = function() {
+      dealLockedBanner.style.display = 'block';
+      dealLockedBanner.textContent = `🎉 Deal Locked & Confirmed at ₹${currentPrice.toLocaleString('en-IN')}! Booking #VIVAH-BK-8921 Recorded in MongoDB.`;
+      chatForm.style.display = 'none';
+      lockDealBtn.disabled = true;
+      lockDealBtn.textContent = '✓ Booking Locked & Confirmed';
+      lockDealBtn.style.background = '#6b7280';
+      alert(`Booking Confirmed at ₹${currentPrice.toLocaleString('en-IN')}! Advance receipt generated.`);
+    };
+  </script>
+</body>
+</html>

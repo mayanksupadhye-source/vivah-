@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Directory &amp; Discovery - Vivah Marketplace</title>
+  <meta name="description" content="Explore verified Indian wedding decorators, caterers, photographers, bridal makeup artists, DJs, and pandits with transparent packages and client ratings.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span>✨ India's Dedicated Multi-Vendor Wedding Discovery &amp; Booking Marketplace</span>
+    <span>|</span>
+    <span>📞 Concierge Helpline: +91 1800-VIVAH-CARE</span>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">वि</div>
+        <div class="brand-text">
+          <h1>Vivah <span>Marketplace</span></h1>
+          <p>Discover • Compare • Negotiate • Book</p>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="vendors.html" class="nav-link active">Explore Vendors</a>
+        <a href="planner.html" class="nav-link">Wedding Planner</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="negotiation.html" class="nav-link">Deal Room</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="planner.html" class="btn-planner-cta">
+          <span>📅 Plan Wedding</span>
+        </a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="vendors.html" class="mobile-nav-link active">Explore Vendors</a>
+      <a href="planner.html" class="mobile-nav-link">Wedding Planner</a>
+      <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+      <a href="negotiation.html" class="mobile-nav-link">Deal Room</a>
+    </div>
+  </header>
+
+  <!-- MAIN VENDORS DIRECTORY CONTENT -->
+  <main class="section-padding" style="padding-top: 2rem;">
+    <div class="container">
+      <!-- Breadcrumb & Header -->
+      <div style="margin-bottom: 2rem;">
+        <div style="font-size: 0.75rem; color: var(--stone-500); margin-bottom: 0.5rem;">
+          <a href="index.html" style="color: inherit; text-decoration: none;">Home</a> &gt; <span style="color: var(--maroon-800); font-weight: 700;">Vendor Directory</span>
+        </div>
+        <h1 style="font-size: 2.25rem; font-family: var(--font-serif); font-weight: 900; color: var(--maroon-950);">
+          Wedding Service Specialists Directory
+        </h1>
+        <p style="font-size: 0.9rem; color: var(--stone-600); margin-top: 0.25rem;">
+          Discover verified providers across Rajasthan, Delhi NCR, Maharashtra, and Gujarat with direct phone booking.
+        </p>
+      </div>
+
+      <!-- FILTER CONTROLS BAR -->
+      <div style="background: #fff; border-radius: 1.5rem; padding: 1.25rem; border: 1px solid var(--stone-200); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+          <!-- Keyword search -->
+          <div>
+            <label style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--stone-500); display: block; margin-bottom: 0.35rem;">Search Specialists</label>
+            <input type="text" id="dirSearch" placeholder="Search by name, mandap, photo..." style="width: 100%; padding: 0.6rem 0.85rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; outline: none;">
+          </div>
+
+          <!-- Category filter -->
+          <div>
+            <label style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--stone-500); display: block; margin-bottom: 0.35rem;">Category</label>
+            <select id="dirCategory" style="width: 100%; padding: 0.6rem 0.85rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; outline: none; background: #fff;">
+              <option value="All">All Categories</option>
+              <option value="Decoration & Setup">Decoration &amp; Mandaps</option>
+              <option value="Photography & Media">Photography &amp; Media</option>
+              <option value="Food & Catering">Food &amp; Catering</option>
+              <option value="Beauty & Personal Care">Beauty &amp; Personal Care</option>
+              <option value="Entertainment & Music">Entertainment &amp; Music</option>
+              <option value="Rituals & Ceremonies">Rituals &amp; Ceremonies</option>
+              <option value="Wedding Logistics">Wedding Logistics</option>
+              <option value="Invitations & Gifts">Invitations &amp; Gifts</option>
+            </select>
+          </div>
+
+          <!-- City filter -->
+          <div>
+            <label style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--stone-500); display: block; margin-bottom: 0.35rem;">Location</label>
+            <select id="dirCity" style="width: 100%; padding: 0.6rem 0.85rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; outline: none; background: #fff;">
+              <option value="All">All Cities</option>
+              <option value="Udaipur">Udaipur, Rajasthan</option>
+              <option value="Jaipur">Jaipur, Rajasthan</option>
+              <option value="Mumbai">Mumbai, Maharashtra</option>
+              <option value="New Delhi">New Delhi &amp; NCR</option>
+              <option value="Pune">Pune, Maharashtra</option>
+              <option value="Bengaluru">Bengaluru, Karnataka</option>
+              <option value="Ahmedabad">Ahmedabad, Gujarat</option>
+            </select>
+          </div>
+
+          <!-- Event filter -->
+          <div>
+            <label style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--stone-500); display: block; margin-bottom: 0.35rem;">Ceremony</label>
+            <select id="dirEvent" style="width: 100%; padding: 0.6rem 0.85rem; font-size: 0.85rem; border: 1px solid var(--stone-200); border-radius: 0.75rem; outline: none; background: #fff;">
+              <option value="All">All Ceremonies</option>
+              <option value="Wedding Ceremony">Wedding Ceremony</option>
+              <option value="Sangeet">Sangeet</option>
+              <option value="Mehendi">Mehendi</option>
+              <option value="Haldi">Haldi</option>
+              <option value="Engagement">Engagement</option>
+              <option value="Reception">Reception</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Secondary row: Price slider, Verified toggle, Sorting, View mode -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--stone-100); font-size: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span style="font-weight: 700; color: var(--stone-600);">Max Budget: <strong id="priceLabel" style="color: var(--stone-900);">₹6,00,000</strong></span>
+            <input type="range" id="priceSlider" min="5000" max="600000" step="10000" value="600000" style="width: 140px;">
+          </div>
+
+          <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-weight: 700; color: var(--stone-700);">
+            <input type="checkbox" id="onlyVerified" style="accent-color: #059669;">
+            <span>🛡️ Verified Partners Only</span>
+          </label>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--stone-500);">Sort by:</span>
+            <select id="sortSelect" style="padding: 0.35rem 0.65rem; border-radius: 0.5rem; border: 1px solid var(--stone-200); font-size: 0.75rem; font-weight: 700;">
+              <option value="rating">Top Rated (★)</option>
+              <option value="priceAsc">Price: Low to High</option>
+              <option value="priceDesc">Price: High to Low</option>
+              <option value="experience">Years of Experience</option>
+            </select>
+          </div>
+
+          <div style="display: flex; background: var(--stone-100); padding: 0.25rem; border-radius: 0.5rem;">
+            <button id="btnGridView" style="padding: 0.35rem 0.65rem; border: none; background: #fff; border-radius: 0.35rem; font-size: 0.75rem; font-weight: 700; cursor: pointer;">
+              Grid
+            </button>
+            <button id="btnMapView" style="padding: 0.35rem 0.65rem; border: none; background: transparent; border-radius: 0.35rem; font-size: 0.75rem; font-weight: 600; color: var(--stone-500); cursor: pointer;">
+              Map View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAP SIMULATION PREVIEW (Toggled) -->
+      <div id="mapPreviewBox" style="display: none; background: #fef8eb; border: 2px dashed var(--gold-400); border-radius: 1.5rem; padding: 2rem; text-align: center; margin-bottom: 2rem;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📍</div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 800; color: var(--maroon-900);">
+          Geospatial Proximity &amp; Distance Sorting Mode
+        </h3>
+        <p style="font-size: 0.8rem; color: var(--stone-600); max-width: 500px; margin: 0.5rem auto 1rem;">
+          Visualizing vendor clusters across Rajasthan, Delhi NCR, and Maharashtra. Ranks providers nearest to your wedding hall.
+        </p>
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+          <span style="background: #fff; padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--gold-300);">Udaipur: 12 Vendors (0-15 km)</span>
+          <span style="background: #fff; padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--gold-300);">Jaipur: 18 Vendors (0-25 km)</span>
+          <span style="background: #fff; padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--gold-300);">Mumbai: 24 Vendors (0-30 km)</span>
+        </div>
+      </div>
+
+      <!-- VENDOR CARDS GRID -->
+      <div class="vendor-grid" id="directoryVendorGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- QUICK ENQUIRY MODAL -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="closeEnquiryModal">&times;</button>
+      <div id="enquirySuccessMsg" style="display: none;"></div>
+
+      <form id="enquiryForm">
+        <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--maroon-700); letter-spacing: 0.05em;">Direct Booking Inquiry</span>
+        <h3 id="modalVendorTitle" style="font-size: 1.4rem; font-family: var(--font-serif); font-weight: 900; margin-bottom: 1rem; color: var(--stone-900);">Contact Vendor</h3>
+
+        <input type="hidden" id="modalVendorId">
+        <input type="hidden" id="modalVendorName">
+        <input type="hidden" id="modalVendorCategory">
+
+        <div class="form-group">
+          <label>Your Full Name *</label>
+          <input type="text" id="custName" required placeholder="e.g. Aarav Sharma">
+        </div>
+
+        <div class="form-group">
+          <label>Your Phone Number (Recorded in MongoDB Atlas) *</label>
+          <input type="tel" id="custPhone" required placeholder="+91 98765 43210">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Ceremony</label>
+            <select id="custEvent">
+              <option value="Wedding Ceremony">Wedding Ceremony</option>
+              <option value="Sangeet">Sangeet</option>
+              <option value="Mehendi">Mehendi</option>
+              <option value="Haldi">Haldi</option>
+              <option value="Reception">Reception</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Target Date *</label>
+            <input type="date" id="custDate" required value="2026-12-18">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Target Budget (₹)</label>
+          <input type="number" id="custBudget" placeholder="150000" value="150000">
+        </div>
+
+        <div class="form-group">
+          <label>Special Requirements / Notes</label>
+          <textarea id="custNotes" rows="2" placeholder="e.g. Lotus mandap, 400 guests..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Send Booking Enquiry
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-bottom" style="border: none; padding-top: 0;">
+      <div>&copy; 2026 Vivah Wedding Services Marketplace Ltd. &bull; Made with ❤️ for Indian Weddings</div>
+      <div>🛡️ Direct Vendor Phone Storage in MongoDB Atlas</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Read URL Search Params
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCat = urlParams.get('category');
+    const initialCity = urlParams.get('city');
+    const initialEvent = urlParams.get('event');
+
+    if (initialCat) document.getElementById('dirCategory').value = initialCat;
+    if (initialCity) document.getElementById('dirCity').value = initialCity;
+    if (initialEvent) document.getElementById('dirEvent').value = initialEvent;
+
+    const dirSearch = document.getElementById('dirSearch');
+    const dirCategory = document.getElementById('dirCategory');
+    const dirCity = document.getElementById('dirCity');
+    const dirEvent = document.getElementById('dirEvent');
+    const priceSlider = document.getElementById('priceSlider');
+    const priceLabel = document.getElementById('priceLabel');
+    const onlyVerified = document.getElementById('onlyVerified');
+    const sortSelect = document.getElementById('sortSelect');
+    const dirGrid = document.getElementById('directoryVendorGrid');
+
+    const btnGridView = document.getElementById('btnGridView');
+    const btnMapView = document.getElementById('btnMapView');
+    const mapPreviewBox = document.getElementById('mapPreviewBox');
+
+    btnMapView.addEventListener('click', () => {
+      mapPreviewBox.style.display = 'block';
+      btnMapView.style.background = '#fff';
+      btnMapView.style.color = 'var(--stone-900)';
+      btnGridView.style.background = 'transparent';
+      btnGridView.style.color = 'var(--stone-500)';
+    });
+
+    btnGridView.addEventListener('click', () => {
+      mapPreviewBox.style.display = 'none';
+      btnGridView.style.background = '#fff';
+      btnGridView.style.color = 'var(--stone-900)';
+      btnMapView.style.background = 'transparent';
+      btnMapView.style.color = 'var(--stone-500)';
+    });
+
+    function renderDirectory() {
+      const q = dirSearch.value.trim().toLowerCase();
+      const cat = dirCategory.value;
+      const city = dirCity.value;
+      const evt = dirEvent.value;
+      const maxP = Number(priceSlider.value);
+      const verifiedOnly = onlyVerified.checked;
+      const sortBy = sortSelect.value;
+
+      priceLabel.textContent = `₹${maxP.toLocaleString('en-IN')}`;
+
+      let list = (typeof INITIAL_VENDORS !== 'undefined' ? INITIAL_VENDORS : []).filter(v => {
+        if (cat !== 'All' && v.category !== cat) return false;
+        if (city !== 'All' && !v.city.toLowerCase().includes(city.toLowerCase())) return false;
+        if (evt !== 'All' && !v.supportedEvents.includes(evt)) return false;
+        if (verifiedOnly && !v.isVerified) return false;
+        if (v.startingPrice > maxP) return false;
+        if (q) {
+          const match = v.businessName.toLowerCase().includes(q) ||
+                        v.name.toLowerCase().includes(q) ||
+                        v.description.toLowerCase().includes(q) ||
+                        v.city.toLowerCase().includes(q);
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      list.sort((a, b) => {
+        if (sortBy === 'rating') return b.rating - a.rating;
+        if (sortBy === 'priceAsc') return a.startingPrice - b.startingPrice;
+        if (sortBy === 'priceDesc') return b.startingPrice - a.startingPrice;
+        if (sortBy === 'experience') return b.yearsOfExperience - a.yearsOfExperience;
+        return 0;
+      });
+
+      if (list.length === 0) {
+        dirGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: #fff; border-radius: 1.5rem; border: 1px solid var(--stone-200);">
+            <div style="font-size: 3rem;">🔍</div>
+            <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--stone-800); margin: 0.5rem 0;">No Specialists Matched</h3>
+            <p style="font-size: 0.85rem; color: var(--stone-500);">Try clearing filters or raising your max budget slider.</p>
+          </div>
+        `;
+        return;
+      }
+
+      dirGrid.innerHTML = list.map(v => `
+        <div class="vendor-card">
+          <div class="vendor-cover-wrap">
+            <img src="${v.coverImage}" alt="${v.businessName}">
+            ${v.isVerified ? '<div class="verified-pill">🛡️ Verified</div>' : ''}
+            <div class="vendor-loc-badge">📍 ${v.city}, ${v.state}</div>
+            <div class="vendor-rating-badge">★ ${v.rating.toFixed(1)} (${v.reviewCount})</div>
+          </div>
+          <div class="vendor-body">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="vendor-category-tag">${v.category}</span>
+                <span style="font-size: 0.7rem; color: var(--stone-500); font-weight: 600;">${v.yearsOfExperience} yrs exp</span>
+              </div>
+              <h3 class="vendor-name">${v.businessName}</h3>
+              <p class="vendor-tagline">"${v.tagline}"</p>
+              <div class="vendor-tags">
+                ${v.subcategories.slice(0, 3).map(sub => `<span class="tag-chip">${sub}</span>`).join('')}
+              </div>
+            </div>
+            <div class="vendor-footer">
+              <div class="vendor-price">
+                <span class="vendor-price-label">Starts from</span>
+                <span class="vendor-price-val">₹${v.startingPrice.toLocaleString('en-IN')}</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button onclick="openEnquiry('${v.id}')" class="btn-view-profile" style="background: #fef3c7; color: #78350f; border-color: #fde68a; cursor: pointer;">
+                  📞 Inquire
+                </button>
+                <a href="vendor-detail.html?id=${v.id}" class="btn-view-profile">
+                  View Profile
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    dirSearch.addEventListener('input', renderDirectory);
+    dirCategory.addEventListener('change', renderDirectory);
+    dirCity.addEventListener('change', renderDirectory);
+    dirEvent.addEventListener('change', renderDirectory);
+    priceSlider.addEventListener('input', renderDirectory);
+    onlyVerified.addEventListener('change', renderDirectory);
+    sortSelect.addEventListener('change', renderDirectory);
+
+    renderDirectory();
+  </script>
+</body>
+</html>
